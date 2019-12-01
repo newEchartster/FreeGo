@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "mp-searchbar": "../../components/searchbar/searchbar/searchbar",
+    "navibar": "../../components/navigator/navigation-bar/navigation-bar",
+    "tabbar": "../../components/navigator/tabbar/tabbar"
+  },
+  "navigationBarTitleText": "权益列表"
+}

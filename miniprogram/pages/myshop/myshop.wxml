@@ -1,0 +1,46 @@
+<!--miniprogram/pages/myshop/myshop.wxml-->
+<view class="container-white">
+  <!-- 店家信息 -->
+  <view class="shop-view" style="width:94%;margin-top:5px;border-radius: 5px;">
+    <view class="shop-logo">
+      <image mode="scaleToFill" src="{{logoPath}}"></image>
+    </view>
+    <view class="shop-name">{{shopName}}</view>
+    <view class="userType">{{userType}}</view>
+  </view>
+  <view class="flex-header">
+    <view class="header-item" style="border-right-width:2px;">
+      <view>今日核销</view>
+      <text>{{todayHX}}</text>
+    </view>
+    <view class="header-item" style="border-right-width:2px;">
+      <view>累计核销</view>
+      <text>{{totalHX}}</text>
+    </view>
+    <view class="header-item">
+      <view>会员数量</view>
+      <text>{{memberList}}</text>
+    </view>
+  </view>
+  <!-- 功能菜单 -->
+  <view class="navi">
+    <view bindtap="scan4UseWelfare" class="navi-text">
+      <text>扫描核销</text>
+    </view>
+  </view>
+  <view class="navi">
+    <navigator url="../pickDog/pickDog" open-type="navigate" class="navi-text">
+      <text>新客领狗</text>
+    </navigator>
+  </view>
+  <view class="navi">
+    <navigator url="../manageMem/manageMem" open-type="navigate" class="navi-text">
+      <text>员工管理</text>
+    </navigator>
+  </view>
+  <view class="navi">
+    <navigator url="../howToUse/howToUse" open-type="navigate" class="navi-text">
+      <text>使用手册</text>
+    </navigator>
+  </view>
+</view>

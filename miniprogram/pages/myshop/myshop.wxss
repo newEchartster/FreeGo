@@ -1,0 +1,18 @@
+/* miniprogram/pages/myshop/myshop.wxss */
+@import "../../style/myshop.wxss";
+
+.shop-name {
+  line-height: 80px;
+  font-size: 22px;
+  color: #fff;
+}
+.userType {
+  line-height: 20px;
+  width: 50px;
+  text-align: center;
+  height: 20px;
+  background-color: #fff;
+  margin-top: 30px;
+  margin-left: 5px;
+  border-radius: 10px;
+}

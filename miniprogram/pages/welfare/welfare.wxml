@@ -1,0 +1,71 @@
+<!--miniprogram/pages/welfare/welfare.wxml-->
+<!-- 权益模板 -->
+<template name="welfare">
+  <view>
+    <text hidden="true">{{item.id}}</text>
+    <!-- logo -->
+    <view>
+    </view>
+    <!-- 详细 -->
+    <view>
+      <view>【{{item.shopName}}】{{item.title}}</view>
+      <view>有效期：{{item.startDate}}-{{item.endDate}}</view>
+      <view>数量：{{item.num}}张    价值：{{item.value}}</view>
+    </view>
+    <!-- 位置和使用 -->
+    <view>
+      <view>500m</view>
+      <view>使用</view>
+    </view>
+  </view>
+</template>
+
+<view class="container">
+  <!-- 权益汇总 -->
+  <view class="flex-header">
+    <view class="header-item" style="border-right-width:2px;">
+      <view>可用权益券</view>
+      <text>{{canUseCount}}张</text>
+    </view>
+    <view class="header-item" style="border-right-width:2px;">
+      <view>权益价值</view>
+      <text>{{totalValue}}元</text>
+    </view>
+    <view class="header-item">
+      <view>可省</view>
+      <text>{{saveValue}}元</text>
+    </view>
+  </view>
+  <!-- 快速搜索 -->
+  <view class="search-view">
+    <mp-searchbar placeholder="输入门店名称即可查找权益" bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+  </view>
+  <!-- 权益列表 -->
+  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" class="welfare-list">
+    <!-- <view wx:for="{{datas}}" >
+      <template is="welfare" data="{{item}}"/>
+    </view> -->
+    <view wx:for="{{datas}}" wx:key="key" class="welfare-item">
+      <text hidden="true">{{item.id}}</text>
+      <!-- logo -->
+      <view class="shop-logo">
+        <image mode="scaleToFill" src="{{item.logoPath}}"></image>
+      </view>
+      <!-- 详细 -->
+      <view style="width:{{detailWidth}}px;">
+        <view class="welfare-item-title">【{{item.shopName}}】{{item.title}}</view>
+        <view class="welfare-item-date">有效期：{{item.startDate}}-{{item.endDate}}</view>
+        <view class="welfare-item-value">数量：{{item.num}}张<text style="margin-left:20px;">价值：{{item.value}}</text></view>
+      </view>
+      <!-- 位置和使用 -->
+      <view class="shop-position">
+        <view>500m</view>
+        <view>使用</view>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- 导航栏 -->
+  <!-- <tabbar class="bottom-tabbar" list="{{tabbars}}" bindchange="tabChange"></tabbar> -->
+</view>
+<!-- <web-view src="https://mp.weixin.qq.com/s/HLNr0XM0I0vQtdAEN2UPWg">
+</web-view> -->

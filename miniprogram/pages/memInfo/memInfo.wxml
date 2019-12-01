@@ -1,0 +1,22 @@
+<!--miniprogram/pages/memInfo/memInfo.wxml-->
+<view class="container-white" style="height:{{winHeight}}px;padding-top:150px;">
+  <form bindsubmit="formSubmit" bindreset="formReset" style="background-color:#eeeeee">
+    <view class="form-input">
+      <label>电 话：</label>
+      <input>{{phoneNum}}</input>
+    </view>
+    <view class="form-input">
+      <label>生 日：</label>
+      <input>{{birthday}}</input>
+    </view>
+    <view class="form-input">
+      <label>地 址：</label>
+      <input>{{address}}</input>
+    </view>
+
+    <view class="btn-area">
+      <button type="primary"  formType="submit">提交</button>
+      <button type="primary"  formType="reset">重置</button>
+    </view>
+  </form>
+</view>

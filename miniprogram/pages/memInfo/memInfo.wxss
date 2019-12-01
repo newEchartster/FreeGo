@@ -1,0 +1,31 @@
+/* miniprogram/pages/memInfo/memInfo.wxss */
+@import "../../style/myshop.wxss";
+
+.form-input {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 10px 0px 10px 20px;
+}
+.form-input label{
+  width: 80px;
+  color: rgb(196, 216, 123);
+  line-height: 30px;
+}
+.form-input input{
+  width: 63%;
+  border: 2px solid rgba(175, 177, 157, 0.781);
+  height: 30px;
+  padding-left: 5px;
+}
+.btn-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+button {
+  margin: 10px;
+}
