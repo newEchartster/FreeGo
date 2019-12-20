@@ -1,20 +1,16 @@
-<!--miniprogram/pages/pickDog/pickDog.wxml-->
+<!--miniprogram/pages/manageMem/addEmp/addEmp.wxml-->
 <view class="container" style="height:{{winHeight}}px;padding-top:150px;background-color:#eeeeee;">
   <form bindsubmit="formSubmit" style="width:100%">
     <view class="form-input">
-      <label style="width:90px;">电 话：</label>
+      <label>电 话：</label>
       <input name="phoneNum" style="width:{{inputWidth}}px;" ></input>
     </view>
     <view class="form-input">
-      <label style="width:90px;">验证码：</label>
+      <label>验证码：</label>
       <input name="code" style="width:{{inputWidth}}px;" ></input>
-    </view>
-    <view class="form-input">
-      <label style="width:90px;">狗狗编号：</label>
-      <input name="dogId" style="width:{{inputWidth}}px;" ></input>
     </view>
     <view class="btn-area"> 
       <button type="primary"  formType="submit">提交</button>
-    </view> 
+    </view>
   </form>
 </view>

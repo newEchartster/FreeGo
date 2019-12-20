@@ -53,4 +53,6 @@
 .shop-position {
   width: 45px;
   font-size: 12px;
+  padding-top: 20px;
+  text-align: center;
 }

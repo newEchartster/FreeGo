@@ -1,5 +1,6 @@
 // miniprogram/pages/welfare/welfare.js
 const app = getApp()
+const httputil = require('../../utils/httputil.js')
 
 Page({
 
@@ -10,6 +11,7 @@ Page({
     canUseCount: 63,
     totalValue: 3650,
     saveValue: 1200,
+    isMember: true,
     list: [{
         "text": "权益",
         "iconPath": "/images/qysy/u36.png",
@@ -44,7 +46,8 @@ Page({
         value: 188,
         startDate: '2019.10.15',
         endDate: '2020.9.15',
-        logoPath: "/images/qysy/u139.jpg"
+        logoPath: "/images/qysy/u139.jpg",
+        distance: "300m"
       },
       {
         id:2,
@@ -56,7 +59,8 @@ Page({
         value: 20,
         startDate: '2019.10.15',
         endDate: '2020.12.15',
-        logoPath: "/images/qysy/u99.jpg"
+        logoPath: "/images/qysy/u99.jpg",
+        distance: "500m"
       },
       {
         id:3,
@@ -68,7 +72,8 @@ Page({
         value: 288,
         startDate: '2019.11.15',
         endDate: '2020.2.15',
-        logoPath: "/images/qysy/u115.jpg"
+        logoPath: "/images/qysy/u115.jpg",
+        distance: "1.2km"
       },
       {
         id:1,
@@ -80,7 +85,8 @@ Page({
         value: 88,
         startDate: '2019.11.25',
         endDate: '2020.12.15',
-        logoPath: "/images/qysy/u127.jpg"
+        logoPath: "/images/qysy/u127.jpg",
+        distance: "2.3km"
       },
     ]
   },
@@ -112,9 +118,24 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
+          // // 未登录进行登录
+          // if (!app.globalData.logged) {
+          //   // 获取openid进行校验用户是否是会员
+          //   app.getOpenid(function (openid) {
+          //     httputil.login(openid)
+          //     app.isMember(openid, function (res) {
+          //       if (res && me.globalData.memType == 'HY') {
+          //         this.setData({
+          //           isMember: true
+          //         })
+          //       }
+          //     });
+          //   })
+          // }
         }
       })
     }
+    
     // 系统信息
     if (!app.globalData.systemInfo) {
       wx.getSystemInfo({
@@ -124,65 +145,36 @@ Page({
             listHeight: res.windowHeight - 130,
             detailWidth: res.windowWidth - 125
           })
-          // 未登录进行登录，是会员登录后直接跳转权益主页
-          if (!app.globalData.logged) {
-            // 获取openid进行校验用户是否是会员
-            app.getOpenid(function (openid) {
-              app.isMember(openid, function (res) {
-                // if (res) {
-                //   wx.redirectTo({
-                //     url: '../welfare/welfare',
-                //   })
-                //   return
-                // }
-              });
-            })
-          }
         }
       })
     }
-    // var tabbar = []
-    // tabbar[0] = this.data.list[0]
-    // tabbar[1] = this.data.list[1]
-    // if (app.globalData.userInfo.type) {
-    //   var type = app.globalData.userInfo.type
-    //   if(type == 'DY' || type == 'DZ') {
-    //     tabbar[2] = this.data.list[2]
-    //   }else {
-    //     tabbar[2] = this.data.list[3]
-    //   }
-    // }
-    // this.setData({
-    //   tabbars: tabbar,
-    //   listHeight: app.globalData.systemInfo.windowHeight - 200,
-    //   detailWidth: app.globalData.systemInfo.windowWidth - 125
-    // })
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    this.setData({
+      search: this.search.bind(this)
+    })
   },
-
+  /**
+   * 搜索附近权益
+   */
   search: function(value) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve([{
-          text: '搜索结果',
-          value: 1
-        }, {
-          text: '搜索结果2',
-          value: 2
-        }])
+        // 搜索结果设置
       }, 200)
     })
   },
-  // 切换tab页
-  tabChange(e) {
-    // wx.switchTab({
-    //   url: '/pages/member/member'
-    // })
+  /**
+   * 打开权益详细
+   */
+  openDetail: function() {
+    wx.navigateTo({
+      url: '../welfareDetail/welfareDetail'
+    })
   }
 })

@@ -1,22 +1,32 @@
 <!--miniprogram/pages/memInfo/memInfo.wxml-->
-<view class="container-white" style="height:{{winHeight}}px;padding-top:150px;">
-  <form bindsubmit="formSubmit" bindreset="formReset" style="background-color:#eeeeee">
+<view class="container" style="height:{{winHeight}}px;padding-top:50px;background-color:#eeeeee;">
+  <form bindsubmit="formSubmit" style="width:100%">
+    <view class="shop-logo" style="text-align: center;width: 100%;">
+      <image mode="scaleToFill" bindtap="previewImg" src="{{headUrl}}"></image>
+      <button class="upload-btn" bindtap="upload">上传头像</button>
+    </view>
+    <view class="form-input">
+      <label>昵 称：</label>
+      <input name="nickName" style="width:{{inputWidth}}px;" value="{{nickName}}">{{nickName}}</input>
+    </view>
+    <view class="form-input">
+      <label>性 别：</label>
+      <input name="gender" style="width:{{inputWidth}}px;" value="{{gender}}">{{gender}}</input>
+    </view>
     <view class="form-input">
       <label>电 话：</label>
-      <input>{{phoneNum}}</input>
+      <input name="phone" style="width:{{inputWidth}}px;" value="{{phone}}" >{{phone}}</input>
     </view>
     <view class="form-input">
       <label>生 日：</label>
-      <input>{{birthday}}</input>
+      <picker mode="date" name="birthday" style="width:{{inputWidth}}px;" value="{{birthday}}" bindchange="bindDateChange">{{birthday}}</picker>
     </view>
     <view class="form-input">
       <label>地 址：</label>
-      <input>{{address}}</input>
+      <picker mode="region" name="address" style="width:{{inputWidth}}px;" value="{{address}}" bindchange="bindRegionChange">{{address}}</picker>
     </view>
-
-    <view class="btn-area">
+    <view class="btn-area"> 
       <button type="primary"  formType="submit">提交</button>
-      <button type="primary"  formType="reset">重置</button>
-    </view>
+    </view> 
   </form>
 </view>

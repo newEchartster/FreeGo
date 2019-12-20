@@ -1,25 +1,5 @@
 <!--miniprogram/pages/welfare/welfare.wxml-->
-<!-- 权益模板 -->
-<template name="welfare">
-  <view>
-    <text hidden="true">{{item.id}}</text>
-    <!-- logo -->
-    <view>
-    </view>
-    <!-- 详细 -->
-    <view>
-      <view>【{{item.shopName}}】{{item.title}}</view>
-      <view>有效期：{{item.startDate}}-{{item.endDate}}</view>
-      <view>数量：{{item.num}}张    价值：{{item.value}}</view>
-    </view>
-    <!-- 位置和使用 -->
-    <view>
-      <view>500m</view>
-      <view>使用</view>
-    </view>
-  </view>
-</template>
-
+<import src="../../template/navigator/navitemp.wxml" />
 <view class="container">
   <!-- 权益汇总 -->
   <view class="flex-header">
@@ -38,7 +18,7 @@
   </view>
   <!-- 快速搜索 -->
   <view class="search-view">
-    <mp-searchbar placeholder="输入门店名称即可查找权益" bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+    <mp-searchbar placeholder="输入门店名称即可查找权益" search="{{search}}"></mp-searchbar>
   </view>
   <!-- 权益列表 -->
   <scroll-view scroll-y="true" style="height:{{listHeight}}px;" class="welfare-list">
@@ -52,18 +32,21 @@
         <image mode="scaleToFill" src="{{item.logoPath}}"></image>
       </view>
       <!-- 详细 -->
-      <view style="width:{{detailWidth}}px;">
+      <view style="width:{{detailWidth}}px;" >
         <view class="welfare-item-title">【{{item.shopName}}】{{item.title}}</view>
         <view class="welfare-item-date">有效期：{{item.startDate}}-{{item.endDate}}</view>
         <view class="welfare-item-value">数量：{{item.num}}张<text style="margin-left:20px;">价值：{{item.value}}</text></view>
       </view>
       <!-- 位置和使用 -->
       <view class="shop-position">
-        <view>500m</view>
-        <view>使用</view>
+        <view>{{item.distance}}</view>
+        <block wx:if="{{isMember}}">
+          <view bindtap="openDetail" class="btn-use">使用</view>
+        </block>
       </view>
     </view>
   </scroll-view>
+  <template is="navigator" data=""/>
   <!-- 导航栏 -->
   <!-- <tabbar class="bottom-tabbar" list="{{tabbars}}" bindchange="tabChange"></tabbar> -->
 </view>

@@ -1,0 +1,7 @@
+<!--miniprogram/template/navigator/navitemp.wxml-->
+<template name="navigator">
+  <view class="navi-bottom">
+    <view class="btn-use" bindtap="phoneCall">拨打门店电话</view>
+      <view class="btn-use" bindtap="locateShop">查看门店位置</view>
+  </view>
+</template>

@@ -1,1 +1,18 @@
 /* miniprogram/pages/manageMem/manageMem.wxss */
+.emp-item {
+  margin-bottom: 2px;
+  background-color: #fff;
+  height: 80px;
+}
+.btn-del {
+  width: 50px;
+  height: 24px;
+  text-align: center;
+  margin-top: 25px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+.info-normal {
+  font-size: 14px;
+  padding: 3px 15px;
+}

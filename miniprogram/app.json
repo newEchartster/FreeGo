@@ -10,7 +10,11 @@
     "pages/pickDog/pickDog",
     "pages/manageMem/manageMem",
     "pages/howToUse/howToUse",
-    "pages/shopDetail/shopDetail"
+    "pages/shopDetail/shopDetail",
+    "pages/welfareDetail/welfareDetail",
+    "pages/myshop/statistic/statistic",
+    "pages/manageMem/addEmp/addEmp",
+    "template/navigator/navitemp"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -22,6 +26,11 @@
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "定位将为您推荐附近的优质好店"
+    }
+  },
   "tabBar": {
     "selectedColor": "#fff",
     "backgroundColor": "#6A7D8F",

@@ -1,0 +1,2 @@
+/* miniprogram/pages/manageMem/addEmp/addEmp.wxss */
+@import "../../memInfo/memInfo.wxss";

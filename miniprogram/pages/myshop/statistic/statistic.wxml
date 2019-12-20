@@ -1,0 +1,27 @@
+<!--核销统计-->
+<view class="container background-white">
+  <view style="font-size: 14px;">核销总数：{{total}}</view>
+  <!-- 核销信息 -->
+  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" >
+    <view wx:for="{{datas}}" wx:key="key" >
+      <!-- 用户信息 -->
+      <view class="flex-row-between">
+        <image></image>
+        <view>
+          <view>{{item.memName}}</view>
+          <view>{{item.phoneNum}}</view>
+        </view>
+        <view>{{arrivalTime}}到店</view>
+      </view>
+      <!-- 权益信息 -->
+      <!-- logo -->
+      <image mode="scaleToFill" src="{{item.logoPath}}"></image>
+      <!-- 详细 -->
+      <view style="width:{{detailWidth}}px;" >
+        <view class="welfare-item-title">{{item.title}}</view>
+        <view class="welfare-item-date">有效期：{{item.startDate}}-{{item.endDate}}</view>
+        <view class="welfare-item-value">数量：{{item.num}}张<text style="margin-left:20px;">价值：{{item.value}}</text></view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

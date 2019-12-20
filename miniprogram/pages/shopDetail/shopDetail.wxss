@@ -1,1 +1,20 @@
 /* miniprogram/pages/shopDetail/shopDetail.wxss */
+.shop-info {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.shop-info image {
+  width: 54px;
+  height: 30px;
+  margin: 5px;
+}
+.shop-info view {
+  width: 100%;
+}
+.item-title {
+  font-weight: bold;
+  font-size: 14px;
+}

@@ -1,0 +1,29 @@
+<!--miniprogram/pages/welfareDetail/welfareDetail.wxml-->
+<view class="container">
+  <!-- 门店logo -->
+  <image mode="scaleToFill" src="{{logoPath}}"></image>
+  <!-- 权益详细 -->
+  <view class="flex-row-between">
+    <view>{{title}}</view>
+    <view>权益价值：{{value}}元</view>
+  </view>
+  <!-- 条码 -->
+  <view class="barcode">
+    <canvas canvas-id="barcode" />
+    <view>{{codeStr}}</view>
+    <text>请将以上条码出示给店员使用</text>
+    <view>有效期{{startDate}}至{{endDate}}</view>
+  </view>
+  <!-- 使用须知 -->
+  <view>
+    <view style="font-weight:bold;">使用须知:</view>
+    <view wx:for="{{useNote}}" wx:key="key">
+      {{item}}
+    </view>
+  </view>
+  <!-- 门店电话，位置 -->
+  <view class="flex-row-around position-bottom">
+    <view class="btn-use" bindtap="phoneCall">拨打门店电话</view>
+    <view class="btn-use" bindtap="locateShop">查看门店位置</view>
+  </view>
+</view>

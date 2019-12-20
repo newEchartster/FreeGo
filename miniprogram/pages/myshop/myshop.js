@@ -34,13 +34,31 @@ Page({
       memberList: 26
     })
   },
-
+  // 扫码核销权益
   scan4UseWelfare: function () {
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {
         console.log(res)
       }
+    })
+  },
+  /**
+   * 打开核销统计页面
+   */
+  openStatistc: function(e) {
+    let shopId = e.target.id
+    wx.navigateTo({
+      url: 'statistic/statistic?isToday=' + shopId
+    })
+  },
+  /**
+   * 打开会员列表
+   */
+  memberList: function () {
+    let shopId = e.target.id
+    wx.navigateTo({
+      url: 'statistic/statistic?isToday=' + shopId
     })
   }
 })

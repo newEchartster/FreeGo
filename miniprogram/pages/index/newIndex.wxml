@@ -19,5 +19,5 @@
   </view>
 
   <!-- 跳转到权益首页 -->
-  <!-- <button type="primary" bindtap="onGotoWelfare" style="margin-top:20px;">查看福利</button> -->
+  <button type="primary" bindtap="onGotoWelfare" style="margin-top:20px;">查看福利</button>
 </view>

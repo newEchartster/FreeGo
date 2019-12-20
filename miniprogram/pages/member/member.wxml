@@ -7,7 +7,7 @@
   </view>
   <view class="navi">
     <navigator url="../index/newIndex" open-type="navigate" class="navi-text">
-      <text>福瑞狗手册</text>
+      <text>使用手册</text>
     </navigator>
   </view>
   <view class="navi">

@@ -1,2 +1,31 @@
 <!--miniprogram/pages/shopDetail/shopDetail.wxml-->
-<text>店铺详情</text>
+<view class="container background-white">
+  <!-- 轮播图 -->
+  <swiper style="width:100%;height:180px;" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <block wx:for="{{shopPics}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item}}" mode="aspectFit" bindtap='previewImg' data-previewurl='{{shopPics}}'
+        data-currenturl='{{item}}'/>
+      </swiper-item>
+    </block>  
+  </swiper>
+  <!-- 店铺信息 -->
+  <view style="width: 100%;" >
+    <view>【{{shopName}}】</view>
+    <view class="shop-info">
+      <image src="{{positionIcon}}" mode="scaleToFill" bindtap="locateShop"/>
+      <view style="line-height:40px;font-size:12px;">{{address}}</view>
+      <image src="{{phoneIcon}}" mode="scaleToFill" bindtap="phoneCall"/>
+      <view style="line-height:40px;font-size:12px;">{{shopPhone}}</view>
+    </view>
+  </view>
+  <!-- 权益信息 -->
+  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" >
+    <view wx:for="{{datas}}" wx:key="key">
+      <!-- 详细 -->
+      <view class="item-title">{{item.title}}</view>
+      <!-- logo -->
+      <image style="height:180px;" mode="scaleToFill" src="{{item.logoPath}}"></image>
+    </view>
+  </scroll-view>
+</view>

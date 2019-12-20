@@ -3,6 +3,12 @@ Page({
 
   /**
    * 页面的初始数据
+   * recoToday:[] 今日推荐
+   * allShop:[
+   *  A:[],
+   *  B:[]
+   *  ...
+   * ]
    */
   data: {
     listHeight: 400,
@@ -71,7 +77,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          winHeight: res.windowHeight - 150,
+          winWidth: res.windowWidth
+        })
+      }
+    })
   },
 
   /**
