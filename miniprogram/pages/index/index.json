@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "welfare": "/components/welfare/welfare",
+    "shop": "/components/shop/shopRecommend",
+    "myshop": "/components/myshop/myshop",
+    "mine": "/components/mine/mine"
+  },
+  "navigationBarTitleText": "权益列表"
+}

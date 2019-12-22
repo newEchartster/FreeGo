@@ -1,0 +1,18 @@
+<!--miniprogram/pages/member/member.wxml-->
+<view class="container">
+  <view class="navi">
+    <navigator url="../memInfo/memInfo" open-type="navigate" class="navi-text">
+      <text>个人资料</text>
+    </navigator>
+  </view>
+  <view class="navi">
+    <navigator url="../index/newIndex" open-type="navigate" class="navi-text">
+      <text>使用手册</text>
+    </navigator>
+  </view>
+  <view class="navi">
+    <navigator url="../contactUs/contactUs" open-type="navigate" class="navi-text">
+      <text>联系我们</text>
+    </navigator>
+  </view>
+</view>

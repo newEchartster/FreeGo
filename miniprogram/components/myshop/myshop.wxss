@@ -1,0 +1,85 @@
+/* components/myshop/myshop.wxss */
+.container-white {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.shop-view {
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  background-color: #6A7D8F;
+  width: 100%;
+  height: 80px;
+}
+.shop-logo {
+  will-change: 80px;
+  width: 80px;
+  text-align: center;
+}
+.shop-logo-image{
+  width: 60px; 
+  height: 60px; 
+  background-color: #eeeeee;
+  border-radius: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.flex-header {
+  display:flex;
+  flex-direction:row;
+  justify-content:space-evenly;
+  width: 100%;
+  height: 80px;
+  background-color: white;
+}
+/* header部分 */
+.header-item {
+  flex: 1;
+  text-align: center;
+  border-color: #CCCCCC;
+  border-style:solid;
+  border-width: 0px;
+}
+.header-item-view {
+  padding-top: 20px;
+}
+.header-item-text {
+  color: red;
+}
+.navi {
+  height: 120rpx;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+.navi-text {
+  width: 100%;
+  line-height: 52px;
+  font-size: 34rpx;
+  color: #007aff;
+  padding-left: 15px;
+}
+.shop-name {
+  line-height: 80px;
+  font-size: 22px;
+  color: #fff;
+}
+.userType {
+  line-height: 20px;
+  width: 50px;
+  text-align: center;
+  height: 20px;
+  background-color: #fff;
+  margin-top: 30px;
+  margin-left: 5px;
+  border-radius: 10px;
+}

@@ -1,7 +1,8 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/index/index",
     "pages/welfare/welfare",
-    "pages/index/newIndex",
     "pages/shop/shopRecommend",
     "pages/myshop/myshop",
     "pages/member/member",
@@ -13,8 +14,7 @@
     "pages/shopDetail/shopDetail",
     "pages/welfareDetail/welfareDetail",
     "pages/myshop/statistic/statistic",
-    "pages/manageMem/addEmp/addEmp",
-    "template/navigator/navitemp"
+    "pages/manageMem/addEmp/addEmp"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -22,7 +22,7 @@
     "navigationBarBackgroundColor": "#1B2123",
     "navigationBarTitleText": "福瑞狗主页",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": false
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
@@ -30,35 +30,5 @@
     "scope.userLocation": {
       "desc": "定位将为您推荐附近的优质好店"
     }
-  },
-  "tabBar": {
-    "selectedColor": "#fff",
-    "backgroundColor": "#6A7D8F",
-    "list": [
-      {
-        "text": "权益",
-        "iconPath": "images/qysy/u36.png",
-        "selectedIconPath": "images/qysy/u36.png",
-        "pagePath": "pages/welfare/welfare"
-      },
-      {
-        "text": "好店",
-        "iconPath": "images/qysy/u40.png",
-        "selectedIconPath": "images/qysy/u40.png",
-        "pagePath": "pages/shop/shopRecommend"
-      },
-      {
-        "text": "本店",
-        "iconPath": "images/qysy/u40.png",
-        "selectedIconPath": "images/qysy/u40.png",
-        "pagePath": "pages/myshop/myshop"
-      },
-      {
-        "text": "我的",
-        "iconPath": "images/qysy/u44.png",
-        "selectedIconPath": "images/qysy/u44.png",
-        "pagePath": "pages/member/member"
-      }
-    ]
   }
 }

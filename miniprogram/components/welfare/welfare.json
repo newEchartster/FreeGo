@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mp-searchbar": "../components/searchbar/searchbar/searchbar"
+  },
+  "navigationBarTitleText": "权益列表"
+}

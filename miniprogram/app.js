@@ -14,7 +14,7 @@ App({
     this.globalData = {
       appid: "wx52a0703cd61e42af",
       appsecret: "91ca88dd4bd98cf5a0acbe13853d347a",
-      serverDomain: "http://182.43.140.247:8081/"
+      serverDomain: "http://47.93.36.254/"
     }
 
     // 未登录进行登录
@@ -24,28 +24,6 @@ App({
         httputil.login(openid)
       })
     }
-  },
-  /**
-   * 判断用户是否是会员
-   */
-  isMember: function(openid, fn) {
-    var me = this
-    const db = wx.cloud.database()
-    db.collection('Member').where({
-      _openid: openid // 填入当前用户 openid
-    }).get({
-      success: function (res) {
-        var isMember = false
-        if (res.data.length == 1) {
-          isMember = true
-          me.globalData.memType = res.data[0].type
-          me.globalData.userInfo.type = res.data[0].type
-        }
-        if (typeof fn === 'function') {
-          fn(isMember)
-        }
-      }
-    })
   },
   /**
    * 获取用户唯一凭证openid
