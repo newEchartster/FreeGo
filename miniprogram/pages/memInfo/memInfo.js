@@ -10,11 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // nickname: '大西瓜',
-    // portrait: '',// 头像地址
-    // phoneNum: 13556767788,
-    // birthday: '1987-10-21',
-    // address: '西环里'
+
   },
 
   /**

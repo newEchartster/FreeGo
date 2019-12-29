@@ -26,12 +26,26 @@ function previewImg(e) {
   })
 }
 
+function getDistance(dis) {
+  if (dis <= 100) {
+    return '<100m'
+  }
+  if (dis <= 1000) {
+    return Math.round(dis) + 'm'
+  }
+  if (dis > 20000) {
+    return '>20km'
+  }
+  return Math.round(dis / 1000) + 'km'
+}
+
 var log = wx.getRealtimeLogManager ? wx.getRealtimeLogManager() : null
 
 module.exports = {
 	barcode: barc,
 	qrcode: qrc,
   previewImg: previewImg,
+  getDistance: getDistance,
   info() {
     if (!log) return
     log.info.apply(log, arguments)
