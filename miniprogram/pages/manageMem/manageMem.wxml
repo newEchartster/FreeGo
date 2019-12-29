@@ -12,7 +12,7 @@
         <view class="info-normal">电话：{{item.phone}}</view>
         <view class="info-normal">住址：{{item.address}}</view>
       </view>
-      <view bindtap="delEmp" id="{{item.userid}}" class="btn-use btn-del" style="width:40px;">删除</view>
+      <view bindtap="delEmp" id="{{item.uid}}" class="btn-use btn-del" style="width:40px;">删除</view>
     </view>
   </scroll-view>
 </view>

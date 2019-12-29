@@ -1,5 +1,5 @@
 /* miniprogram/pages/myshop/myshop.wxss */
-@import "../../style/myshop.wxss";
+@import "../../style/commons.wxss";
 
 .shop-name {
   line-height: 80px;

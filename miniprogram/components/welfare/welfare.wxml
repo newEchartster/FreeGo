@@ -1,5 +1,11 @@
 <!--components/welfare/welfare.wxml-->
 <view class="container">
+  <!-- 福瑞狗卡片 -->
+  <block wx:if="{{isMember}}">
+    <image class="index-card" mode="aspectFill" src="../../images/index_card.jpg"></image>
+    <view class="card-no">No.{{userInfo.dog.no}}</view>
+    <view class="card-date">有效期：{{userInfo.dog.pickDate}}-{{userInfo.dog.lastDate}}</view>
+  </block>
   <!-- 权益汇总 -->
   <view class="flex-header">
     <view class="header-item" style="border-right-width:2px;">
@@ -24,7 +30,7 @@
     <view class="tab-list  {{curPrecision == idx?'active':'default'}}" wx:for="{{precision}}" wx:for-index="idx" wx:for-item="itemName" data-current="{{idx}}" wx:key="key" bindtap="swichNav">{{itemName.text}}</view>
   </view>
   <!-- 权益列表 -->
-  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" class="welfare-list">
+  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" bindscrolltolower="addMore" class="welfare-list">
     <view wx:for="{{datas}}" wx:key="key" class="welfare-item">
       <text hidden="true">{{item.id}}</text>
       <!-- logo -->
@@ -41,10 +47,12 @@
       <view class="shop-position">
         <view>{{item.distance}}</view>
         <block wx:if="{{isMember}}">
-          <view bindtap="openDetail" class="btn-use">使用</view>
+          <view bindtap="openDetail" id="{{item.commodityId}}" class="btn-use">使用</view>
         </block>
       </view>
     </view>
+    <!-- <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
+    <view class="loading complete" hidden="{{loadingCompleted}}">已加载全部</view> -->
   </scroll-view>
 
 </view>

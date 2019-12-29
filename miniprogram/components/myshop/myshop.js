@@ -1,5 +1,6 @@
 // components/myshop/myshop.js
 const app = getApp()
+const httputil = require('../../utils/httputil.js')
 
 Component({
   /**
@@ -20,7 +21,10 @@ Component({
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () {
-      let memType = app.globalData.memType
+      let me = this
+      let userInfo = app.globalData.userInfo
+      me.setData(userInfo)
+      let memType = userInfo.type
       if (memType) {
         if (memType == 'DZ') {
           this.setData({
@@ -38,6 +42,14 @@ Component({
         totalHX: 103,
         memberList: 26
       })
+      // 店家信息
+      let storeInfo = userInfo.storeInfo
+      if (storeInfo) {
+        this.setData({
+          logoPath: storeInfo.imgUrl,
+          shopName: storeInfo.name
+        })
+      }
     },
     moved: function () { },
     detached: function () { },
@@ -52,7 +64,20 @@ Component({
       wx.scanCode({
         onlyFromCamera: true,
         success(res) {
-          console.log(res)
+          let code = res.result
+          // 扫码核销权益
+          httputil.request({
+            method: 'post',
+            data: {
+              code: code
+            },
+            success(re) {
+              console.log('扫码核销成功')
+            },
+            fail(r) {
+              console.error('[' + r.data.code + ']:' + r.data.message)
+            }
+          }, 'api/store/useCode')
         }
       })
     },

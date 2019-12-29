@@ -1,2 +1,3 @@
 <!--miniprogram/pages/howToUse/howToUse.wxml-->
 <text>使用手册</text>
+<view>此处由公众号页面链接</view>

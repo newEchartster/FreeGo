@@ -1,5 +1,6 @@
 // components/shop/shopRecommend.js
 const app = getApp()
+const util = require('../../utils/util.js')
 const httputil = require('../../utils/httputil.js')
 
 Component({
@@ -15,7 +16,11 @@ Component({
    */
   data: {
     currentTab: 0,
-    listHeight: 400,
+    pageNo: 1,
+    pageSize: 20,
+    searchLoading: false, // 正在加载
+    loadingCompleted: false, // 已加载完数据
+    allShop: []
   },
 
   lifetimes: {
@@ -66,22 +71,77 @@ Component({
     /**
      * 进入店铺
      */
-    goToShop: function (options) {debugger
+    goToShop: function (options) {
       let shopId = options.target.id
       wx.navigateTo({
-        url: '../shopDetail/shopDetail?shopId=' + shopId,
-        events: {
-          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-          acceptDataFromOpenedPage: function (shopId) {
-            console.log(data)
-          }
-        },
+        url: '../shopDetail/shopDetail?shopId=' + shopId
       })
     },
     //事件处理函数
     bindChange: function (e) {
       var me = this;
       me.setData({ currentTab: e.detail.current });
+    },
+    /**
+     * 加载更多
+     */
+    addMore: function (e) {
+      let pageNo = this.data.pageNo + 1
+      this.loadData(pageNo)
+    },
+    /**
+     * 加载权益数据
+     * @param pageNum 页数
+     * @param isAppend 是否追加
+     */
+    loadData: function (pageNum) {
+      let me = this
+      me.setData({
+        searchLoading: true
+      })
+      let typeId = me.data.category[me.data.currentTab].id
+      // 请求地址
+      let url = 'admin/store/page/' + typeId + '?pageNo=' + pageNum + '&pageSize=' + me.data.pageSize
+
+      wx.showLoading({
+        title: '正在加载...',
+      })
+      // 获取分类门店
+      httputil.request({
+        method: 'get',
+        success(re) {
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 500)
+          let resData = re.data.data.data == undefined ? [] : re.data.data.data
+          resData.forEach(function (e) {
+            if (e.distance) {
+              e.distance = util.getDistance(e.distance)
+            }
+          })
+          let datas = me.data.allShop.concat(resData)
+          if (resData.length == 0) {
+            me.setData({
+              loadingCompleted: true
+            })
+            setTimeout(function () {
+              wx.showToast({
+                title: '已全部加载',
+                icon: 'success',
+                duration: 1000
+              })
+            }, 1000)
+          }
+          me.setData({
+            allShop: datas,
+            searchLoading: false,
+            pageNo: pageNum
+          })
+        },
+        fail(r) {
+          console.error('[' + r.data.code + ']:' + r.data.message)
+        }
+      }, url)
     },
     swichNav: function (e) {
       var me = this;
@@ -91,6 +151,8 @@ Component({
         me.setData({
           currentTab: e.target.dataset.current
         })
+        // 获取门店列表
+        me.loadData(1)
       }
     },
     initData: function() {
@@ -107,23 +169,7 @@ Component({
           console.error('[' + r.data.code + ']:' + r.data.message)
         }
       }, 'api/store/page/recommend')
-      // 获取门店列表
-      httputil.request({
-        method: 'get',
-        data: {
-          lat: me.data.latitude,
-          lon: me.data.longitude,
-          precision: 0
-        },
-        success(re) {
-          me.setData({
-            allShop: re.data.data.data == undefined ? [] : re.data.data.data
-          })
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
-        }
-      }, 'api/store/page')
+   
       // 获取门店分类
       httputil.request({
         method: 'get',
@@ -131,6 +177,8 @@ Component({
           me.setData({
             category: re.data.data == undefined ? [] : re.data.data
           })
+          // 获取门店列表
+          me.loadData(1)
         },
         fail(r) {
           console.error('[' + r.data.code + ']:' + r.data.message)

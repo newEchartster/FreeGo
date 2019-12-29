@@ -13,29 +13,29 @@ Page({
       {
         "text": "权益",
         "title": "权益列表",
-        "iconPath": "/images/qysy/u36.png",
-        "selectedIconPath": "/images/qysy/u36.png",
+        "iconPath": "/images/icon/zuanshi.svg",
+        "selectedIconPath": "/images/icon/zuanshi.svg",
         "pagePath": "/pages/welfare/welfare"
       },
       {
         "text": "好店",
         "title": "门店",
-        "iconPath": "/images/qysy/u40.png",
-        "selectedIconPath": "/images/qysy/u40.png",
+        "iconPath": "/images/icon/store.svg",
+        "selectedIconPath": "/images/icon/store.svg",
         "pagePath": "/pages/shop/shopRecommend"
       },
       {
         "text": "本店",
         "title": "商家中心",
-        "iconPath": "/images/qysy/u40.png",
-        "selectedIconPath": "/images/qysy/u40.png",
+        "iconPath": "/images/icon/bussiness-man.svg",
+        "selectedIconPath": "/images/icon/bussiness-man.svg",
         "pagePath": "/pages/myshop/myshop"
       },
       {
         "text": "我的",
         "title": "我的",
-        "iconPath": "/images/qysy/u44.png",
-        "selectedIconPath": "/images/qysy/u44.png",
+        "iconPath": "/images/icon/bussiness-man.svg",
+        "selectedIconPath": "/images/icon/bussiness-man.svg",
         "pagePath": "/pages/member/member"
       }
     ] 

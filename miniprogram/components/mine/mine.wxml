@@ -6,7 +6,7 @@
     </navigator>
   </view>
   <view class="navi">
-    <navigator url="../index/newIndex" open-type="navigate" class="navi-text">
+    <navigator url="../howToUse/howToUse" open-type="navigate" class="navi-text">
       <text>使用手册</text>
     </navigator>
   </view>

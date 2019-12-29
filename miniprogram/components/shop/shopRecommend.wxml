@@ -4,28 +4,38 @@
   <view style="text-align:center;width:100%;margin-bottom:6px;">
     <view style="background-color:#fff;width:100%;">今日推荐</view>
     <!-- 推荐列表 -->
-    <view class="flex-shop-header">
+    <scroll-view scroll-x="true" class="flex-shop-header">
       <view wx:for="{{jrtj}}" wx:key="key" class="shop-item">
         <!-- logo -->
         <view class="shop-logo">
-          <image id="{{item.shopId}}" class="shop-logo-image" mode="scaleToFill" bindtap="goToShop" src="{{item.imgUrl}}"></image>
+          <image id="{{item.storeId}}" class="shop-logo-image" mode="scaleToFill" bindtap="goToShop" src="{{item.imgUrl}}"></image>
         </view>
         <view class="shop-name">{{item.name}}</view>
       </view>
-    </view>
+    </scroll-view>
   </view>
   <!-- 所有好店 -->
-  <view class="nav-tabs">
+  <scroll-view scroll-x="true" class="nav-tabs">
     <view class="tab-list  {{currentTab == idx?'active':'default'}}" wx:for="{{category}}" wx:for-index="idx" wx:for-item="itemName" data-current="{{idx}}" wx:key="key" id="{{itemName.id}}" bindtap="swichNav">{{itemName.name}}</view>
-  </view>
+  </scroll-view>
 
-  <scroll-view scroll-y="true" class="{{currentTab == idx?'show':'hidden'}} tab-content" style="height:{{winHeight}}px;background-color:#fff;width:100%;" wx:for="{{allShop}}" wx:for-index="idx"  wx:key="key">
-    <!-- <view wx:for="{{item.datas}}" wx:key="key" class=""> -->
-      <!-- logo -->
-      <view class="shop-logo-two">
-        <image id="{{item.storeId}}" class="shop-logo-two-image" mode="scaleToFill" bindtap="goToShop" src="{{item.imgUrl}}"></image>
+  <scroll-view scroll-y="true" class="{{currentTab == idx?'show':'hidden'}} tab-content" bindscrolltolower="addMore" style="height:{{winHeight}}px;background-color:#fff;width:100%;" wx:for="{{allShop}}" wx:for-index="idx"  wx:key="key">
+    <!-- logo -->
+    <view class="shop-detail">
+      <view class="shop-logo">
+        <image id="{{item.storeId}}" class="shop-logo-image" mode="scaleToFill" bindtap="goToShop" src="{{item.imgUrl}}"></image>
       </view>
-      <view class="shop-name">{{item.name}}</view>
-    <!-- </view> -->
+      <!-- 详细 -->
+      <view style="flex:1;padding: 5px;" >
+        <view class="shop-detail-text">店名：【{{item.name}}】{{item.title}}</view>
+        <view class="shop-detail-text">电话：{{item.phone}}</view>
+        <view class="shop-detail-text">地址：{{item.address}}</view>
+      </view>
+      <!-- 距离 -->
+      <view class="detail-entrance">
+        <view>{{item.distance}}</view>
+        <view bindtap="goToShop" id="{{item.storeId}}" class="btn-use">详情</view>
+      </view>
+    </view>
   </scroll-view>
 </view>

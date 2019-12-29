@@ -1,5 +1,5 @@
 /* miniprogram/pages/memInfo/memInfo.wxss */
-@import "../../style/myshop.wxss";
+@import "../../style/commons.wxss";
 
 .form-input {
   height: 50px;

@@ -55,7 +55,7 @@ Page({
   /**
    * 打开会员列表
    */
-  memberList: function () {
+  memberList: function (e) {
     let shopId = e.target.id
     wx.navigateTo({
       url: 'statistic/statistic?isToday=' + shopId

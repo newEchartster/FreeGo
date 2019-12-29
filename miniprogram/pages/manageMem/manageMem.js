@@ -7,23 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // datas: [
-    //   {
-    //     name: '张三',
-    //     phone: '18712345678',
-    //     address: '时光领域'
-    //   },
-    //   {
-    //     name: '李四',
-    //     phone: '18912345678',
-    //     address: '时光领域'
-    //   },
-    //   {
-    //     name: '王五',
-    //     phone: '18712345678',
-    //     address: '汇景新城'
-    //   },
-    // ]
+   
   },
 
   /**
@@ -52,6 +36,22 @@ Page({
    * 删除员工
    */
   delEmp: function (options) {
-
+    let employeeId = options.target.id
+    httputil.request({
+      method: 'post',
+      data: {
+        employeeId: employeeId
+      },
+      success(re) {
+        wx.showToast({
+          title: '删除成功！',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+      fail(r) {
+        console.error('[' + r.data.code + ']:' + r.data.message)
+      }
+    }, 'api/store/employee/del')
   }
 })

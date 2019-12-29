@@ -138,14 +138,23 @@ Page({
     wx.chooseImage({
       success(res) {
         const tempFilePaths = res.tempFilePaths
+        const uid = app.globalData.userInfo.uid
         // 获取上传地址
         httputil.request({
-          method: 'post',
+          method: 'get',
           success(re) {
             wx.uploadFile({
+              method: 'put',
               url: re.data.data,
+              header: {
+                'x-oss-meta-author': uid,
+                'Content-Type': 'application/octet-stream'
+              },
               filePath: tempFilePaths[0],
               name: 'file',
+              // formData: {
+              //   'success_action_status': '200',
+              // },
               success(res) {
                 const data = res.data
                 debugger

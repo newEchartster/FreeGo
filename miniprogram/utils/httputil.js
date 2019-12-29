@@ -30,6 +30,7 @@ function request(obj, path, access_token) {
  * @param nickname 微信昵称
  */
 function login(openid, nickname) {
+  console.log(openid)
   const app = getApp()
   const domain = app.globalData.serverDomain
   let url = domain + 'login?openId=' + openid

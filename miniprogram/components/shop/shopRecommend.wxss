@@ -12,10 +12,23 @@
   width: 100%;
   height: 110px;
   background-color: white;
+  white-space: nowrap;
+}
+.shop-detail {
+  display:flex;
+  flex-direction:row;
+  padding: 5px;
+  border-bottom:2px solid #eee;
+}
+.shop-detail-text {
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
 }
 .shop-item {
-  width: 25%;
+  width: 80px;
   height: 80px;
+  display: inline-block;
 }
 .shop-logo {
   will-change: 80px;
@@ -54,11 +67,14 @@
 }
 .nav-tabs{
   width: 100%;
-  height: 75rpx;
-  display: flex;   
+  height: 90rpx;
+  display: flex;
 }
 .tab-content{
   flex: 1;
+}
+.tab-list{
+  display: inline-block;
 }
 .default{
     line-height:75rpx;
@@ -67,7 +83,8 @@
     border-bottom:1px solid #eee;
     color:#000;
     font-weight:bold;
-    font-size:28rpx;  
+    font-size:28rpx;
+    min-width: 80px;
 }
 .active{
     line-height:75rpx;
@@ -77,6 +94,7 @@
     border-bottom:1px solid red;
     font-weight:bold;
     font-size:28rpx;
+    min-width: 80px;
 }
 .show{
     display:block;
@@ -85,4 +103,14 @@
 .hidden{
     display:none;
     flex: 1;
+}
+.btn-use {
+  background-color: #17d817;
+  border-radius: 10px;
+}
+.detail-entrance {
+  width:50px;
+  text-align: center;
+  line-height: 20px;
+  padding-top: 20px;
 }

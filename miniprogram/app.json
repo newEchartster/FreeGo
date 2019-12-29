@@ -2,10 +2,6 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
-    "pages/welfare/welfare",
-    "pages/shop/shopRecommend",
-    "pages/myshop/myshop",
-    "pages/member/member",
     "pages/memInfo/memInfo",
     "pages/contactUs/contactUs",
     "pages/pickDog/pickDog",

@@ -1,5 +1,6 @@
 // components/welfare/welfare.js
 const app = getApp()
+const util = require('../../utils/util.js')
 const httputil = require('../../utils/httputil.js')
 
 Component({
@@ -14,9 +15,12 @@ Component({
    * 组件的初始数据
    */
   data: {
-    curPrecision: 0,
+    curPrecision: 0,  // 当前范围
+    pageNo: 1, 
     pageSize: 20,
-    query: undefined,
+    query: undefined, // 搜索值
+    searchLoading: false, // 正在加载
+    loadingCompleted: false, // 已加载完数据
     precision: [
       {
         value: 6,
@@ -71,18 +75,7 @@ Component({
         })
       }
 
-      // 系统信息
-      if (!app.globalData.systemInfo) {
-        wx.getSystemInfo({
-          success: res => {
-            app.globalData.systemInfo = res
-            me.setData({
-              listHeight: res.windowHeight - 185,
-              detailWidth: res.windowWidth - 125
-            })
-          }
-        })
-      }
+      
       
       // 位置信息
       wx.getLocation({
@@ -95,6 +88,7 @@ Component({
             longitude: longitude
           })
           me.initData()
+          
         }
       })
       // 位置变化
@@ -105,7 +99,7 @@ Component({
           latitude: latitude,
           longitude: longitude
         })
-        me.loadData(1, false)
+        // me.loadData(1, false)
       })
     },
     moved: function () { },
@@ -145,10 +139,18 @@ Component({
     /**
      * 打开权益详细
      */
-    openDetail: function () {
+    openDetail: function (e) {
+      let commodityId = e.target.id
       wx.navigateTo({
-        url: '../welfareDetail/welfareDetail'
+        url: '../welfareDetail/welfareDetail?commodityId=' + commodityId
       })
+    },
+    /**
+     * 加载更多
+     */
+    addMore: function(e) {
+      let pageNo = this.data.pageNo + 1
+      this.loadData(pageNo, true)
     },
     /**
      * 加载权益数据
@@ -157,6 +159,9 @@ Component({
      */
     loadData: function(pageNum, isAppend) {
       var me = this
+      me.setData({
+        searchLoading: true
+      })
       // 请求地址
       let url = 'api/store/commodity-page?lat=' + me.data.latitude 
         + '&lon=' + me.data.longitude
@@ -167,19 +172,44 @@ Component({
       if (me.data.query) {
         url = url + '&storeName=' + me.data.query
       }
-
+      wx.showLoading({
+        title: '正在加载...',
+      })
       // 获取门店权益
       httputil.request({
         method: 'get',
         success(re) {
-          let datas = re.data.data.data == undefined ? [] : re.data.data.data
-          datas.forEach(function (e) {
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 500)
+          let datas
+          let resData = re.data.data.data == undefined ? [] : re.data.data.data
+          resData.forEach(function (e) {
             if (e.storeInfo.distance) {
-              e.distance = me.getDistance(e.storeInfo.distance)
+              e.distance = util.getDistance(e.storeInfo.distance)
             }
           })
+          if (isAppend) {
+            datas = me.data.datas.concat(resData)
+          }else {
+            datas = resData
+          }
+          if (resData.length == 0) {
+            me.setData({
+              loadingCompleted: true
+            })
+            setTimeout(function(){
+              wx.showToast({
+                title: '已全部加载',
+                icon: 'success',
+                duration: 1000
+              })
+            }, 1000)
+          }
           me.setData({
-            datas: datas
+            datas: datas,
+            searchLoading: false,
+            pageNo: pageNum
           })
         },
         fail(r) {
@@ -198,27 +228,28 @@ Component({
         me.loadData(1, false)
       }
     },
-    getDistance: function(dis) {
-      if (dis <= 100) {
-        return '<100m'
-      }
-      if (dis <= 1000) {
-        return Math.round(dis) + 'm'
-      }
-      if(dis > 20000) {
-        return '>20km'
-      }
-      return Math.round(dis/1000) + 'km'
-    },
     /**
      * 初始化数据
      */
     initData: function () {
       let me = this
-      // 是否是会员
-      if (app.globalData.userInfo.type == 'HY') {
+      // 是否是会员 TODO 测试完成需要删除DZ
+      if (app.globalData.userInfo.type == 'HY' || app.globalData.userInfo.type == 'DZ') {
         me.setData({
           isMember: true
+        })
+      }
+      // 系统信息
+      if (!app.globalData.systemInfo) {
+        wx.getSystemInfo({
+          success: res => {
+            app.globalData.systemInfo = res
+            let listHeight = (me.data.isMember ? res.windowHeight - 324 : res.windowHeight - 184)
+            me.setData({
+              listHeight: listHeight,
+              detailWidth: res.windowWidth - 125
+            })
+          }
         })
       }
       // 获取权益券数量
