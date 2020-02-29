@@ -25,13 +25,6 @@ Page({
         "pagePath": "/pages/shop/shopRecommend"
       },
       {
-        "text": "本店",
-        "title": "商家中心",
-        "iconPath": "/images/icon/bussiness-man.svg",
-        "selectedIconPath": "/images/icon/bussiness-man.svg",
-        "pagePath": "/pages/myshop/myshop"
-      },
-      {
         "text": "我的",
         "title": "我的",
         "iconPath": "/images/icon/bussiness-man.svg",
@@ -61,15 +54,9 @@ Page({
     if (that.data.currentTab === index) {
       return false;
     } else {
-      if (that.data.type == 'HY' && index == 2) {
-        that.setData({
-          currentTab: index + 1
-        })
-      }else {
-        that.setData({
-          currentTab: index
-        })
-      }
+      that.setData({
+        currentTab: index
+      })
       wx.setNavigationBarTitle({
         title: that.data.navigations[index].title
       })

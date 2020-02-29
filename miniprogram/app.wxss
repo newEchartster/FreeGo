@@ -6,8 +6,9 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  background-color: #fff;
 }
-.background-white {
+.search-class {
   background-color: #fff;
 }
 image {
@@ -48,7 +49,6 @@ button::after{
 }
 
 page {
-  background: #E5E5E5;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -93,6 +93,11 @@ page {
   justify-content:space-around;
   width: 100%;
 }
+.flex-normal {
+  display:flex;
+  flex-direction:row;
+  width: 100%;
+}
 .position-bottom {
   position: absolute;
   bottom: 0;
@@ -109,4 +114,13 @@ page {
   position: absolute;
   bottom: 0;
   background-color: #6A7D8F;
+}
+.header-title {
+  background-color: #e9e9e9;
+  color: #353535;
+  font-size: 15px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+  width: 100%;
 }

@@ -1,7 +1,6 @@
 /* miniprogram/pages/welfareDetail/welfareDetail.wxss */
 .container image {
   width: 100%;
-  height: 200px;
 }
 .welfare-item {
   margin-bottom: 2px;

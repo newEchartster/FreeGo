@@ -1,0 +1,34 @@
+<!--核销统计-->
+<wxs src="../../filter.wxs" module="filter" />
+<view class="container">
+  <view class="title">核销总数：{{total}}</view>
+  <!-- 核销信息 -->
+  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" bindscrolltolower="addMore">
+    <view wx:for="{{datas}}" wx:key="key" class="member-item">
+      <!-- 用户信息 -->
+      <view class="flex-normal">
+        <view style="width:80px">
+          <image class="shop-logo-image"></image>
+        </view>
+        <view style="flex:1;">
+          <view class="title-text">{{item.userInfo.nickName}}</view>
+          <view class="title-text">{{item.userInfo.phone}}</view>
+        </view>
+        <view class="title-text" style="padding-right:10px;">{{filter.formatDate(item.createTime)}}到店</view>
+      </view>
+      <!-- 权益信息 -->
+      <!-- logo -->
+      <view class="flex-normal">
+        <view style="width:80px">
+          <image mode="scaleToFill" class="shop-logo-image" src="{{item.logoPath}}"></image>
+        </view>
+        <!-- 详细 -->
+        <view style="flex:1;" >
+          <view class="title-text">{{item.title}}</view>
+          <view class="title-text">有效期：{{filter.formatDate(item.startTime)}}-{{filter.formatDate(item.endTime)}}</view>
+          <view class="title-text">数量：{{item.num}}张<text style="margin-left:20px;">价值：{{item.price}}元</text></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

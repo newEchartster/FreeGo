@@ -75,8 +75,6 @@ Component({
         })
       }
 
-      
-      
       // 位置信息
       wx.getLocation({
         type: 'gcj02',
@@ -140,10 +138,26 @@ Component({
      * 打开权益详细
      */
     openDetail: function (e) {
-      let commodityId = e.target.id
-      wx.navigateTo({
-        url: '../welfareDetail/welfareDetail?commodityId=' + commodityId
-      })
+      let me = this
+      // 是否已领取
+      if (me.data.isMember) {
+        let commodityId = e.target.id
+        wx.navigateTo({
+          url: '../welfareDetail/welfareDetail?commodityId=' + commodityId
+        })
+      }else {
+        wx.showModal({
+          title: '福瑞狗提示',
+          content: '您还未领取狗狗哦！领取后可享受权益.点击【确定】查看如何领取',
+          success(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../introduction/introduction'
+              })
+            }
+          }
+        })
+      }
     },
     /**
      * 加载更多
@@ -176,8 +190,7 @@ Component({
         title: '正在加载...',
       })
       // 获取门店权益
-      httputil.request({
-        method: 'get',
+      httputil.request(url, {
         success(re) {
           setTimeout(function () {
             wx.hideLoading()
@@ -211,11 +224,8 @@ Component({
             searchLoading: false,
             pageNo: pageNum
           })
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
         }
-      }, url)
+      })
     },
     swichNav: function (e) {
       var me = this
@@ -223,7 +233,8 @@ Component({
         return false
       } else {
         me.setData({
-          curPrecision: e.target.dataset.current
+          curPrecision: e.target.dataset.current,
+          datas: [],
         })
         me.loadData(1, false)
       }
@@ -233,10 +244,13 @@ Component({
      */
     initData: function () {
       let me = this
-      // 是否是会员 TODO 测试完成需要删除DZ
-      if (app.globalData.userInfo.type == 'HY' || app.globalData.userInfo.type == 'DZ') {
+      if (util.isMember()) {
+        let dog = me.data.userInfo.dog
+        let start = new Date().getTime()
+        let days = util.getTimeDiff(start, dog.lastDate) + 1
         me.setData({
-          isMember: true
+          isMember: true,
+          remainsDays: days
         })
       }
       // 系统信息
@@ -253,41 +267,29 @@ Component({
         })
       }
       // 获取权益券数量
-      httputil.request({
-        method: 'get',
+      httputil.request('api/user/code/count/unuse', {
         success(re) {
           me.setData({
             canUseCount: re.data.data == undefined ? 0 : re.data.data
           })
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
         }
-      }, 'api/user/code/count/unuse')
+      })
       // 获取权益券价值
-      httputil.request({
-        method: 'get',
+      httputil.request('api/user/code/amount/unuse', {
         success(re) {
           me.setData({
             totalValue: re.data.data == undefined ? 0 : re.data.data
           })
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
         }
-      }, 'api/user/code/amount/unuse')
+      })
       // 获取权益优惠值
-      httputil.request({
-        method: 'get',
+      httputil.request('api/user/code/amount/used', {
         success(re) {
           me.setData({
             saveValue: re.data.data == undefined ? 0 : re.data.data
           })
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
         }
-      }, 'api/user/code/amount/used')
+      })
 
       // 获取门店权益
       me.loadData(1, false)

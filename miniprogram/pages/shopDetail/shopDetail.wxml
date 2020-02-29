@@ -1,31 +1,46 @@
 <!--miniprogram/pages/shopDetail/shopDetail.wxml-->
 <view class="container background-white">
   <!-- 轮播图 -->
-  <swiper style="width:100%;height:180px;" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
-    <block wx:for="{{shopPics}}" wx:key="index">
+  <swiper style="width:100%;height:{{imageHeight}}px;" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+    <!-- <block wx:for="{{shopPics}}" wx:key="index"> -->
       <swiper-item>
-        <image src="{{item}}" mode="aspectFit" bindtap='previewImg' data-previewurl='{{shopPics}}'
-        data-currenturl='{{item}}'/>
+        <image src="{{imgUrl}}" mode="aspectFit" bindtap='previewImg' data-previewurl='{{imgUrl}}'
+        data-currenturl='{{imgUrl}}'/>
       </swiper-item>
-    </block>  
+    <!-- </block> -->
   </swiper>
   <!-- 店铺信息 -->
   <view style="width: 100%;" >
-    <view>【{{shopName}}】</view>
-    <view class="shop-info">
-      <image src="{{positionIcon}}" mode="scaleToFill" bindtap="locateShop"/>
-      <view style="line-height:40px;font-size:12px;">{{address}}</view>
-      <image src="{{phoneIcon}}" mode="scaleToFill" bindtap="phoneCall"/>
-      <view style="line-height:40px;font-size:12px;">{{shopPhone}}</view>
+    <view class="shop-title">{{name}}</view>
+    <view class="shop-description">{{description}}</view>
+    <view class="header-title">门店信息</view>
+    <view>
+      <view class="shop-info">
+        <image src="{{phoneIcon}}" mode="scaleToFill" bindtap="phoneCall"/>
+        <view>{{phone}}</view>
+      </view>
+      <view class="shop-info">
+        <image src="{{positionIcon}}" mode="scaleToFill" bindtap="locateShop"/>
+        <view>{{address}}</view>
+      </view>
     </view>
   </view>
   <!-- 权益信息 -->
-  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" >
-    <view wx:for="{{datas}}" wx:key="key">
+  <view style="width: 100%;" >
+    <view class="header-title">特权展示</view>
+  </view>
+  <scroll-view scroll-y="true" bindscrolltolower="addMore">
+    <view wx:for="{{datas}}" wx:key="key" class="welfare-item">
+      <view class="shop-logo">
+        <image mode="scaleToFill" class="shop-logo-image" src="{{item.imgUrls[0].imgUrl}}"></image>
+      </view>
       <!-- 详细 -->
-      <view class="item-title">{{item.title}}</view>
-      <!-- logo -->
-      <image style="height:180px;" mode="scaleToFill" src="{{item.logoPath}}"></image>
+      <view style="flex:1;" >
+        <view class="item-text-title">{{item.title}}</view>
+        <view class="item-text" style="top:20px;">有效期：{{item.startDate}}-{{item.endDate}}</view>
+        <view class="item-text">数量：{{item.num}}<text style="margin-left:20px;">价值：{{item.price}}元</text></view>
+      </view>
+      <button bindtap="openDetail" id="{{item.commodityId}}" style="width:50px;min-height:25px;margin-right: 10px;" class="btn-use">使用</button>
     </view>
   </scroll-view>
 </view>

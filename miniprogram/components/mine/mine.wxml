@@ -1,18 +1,37 @@
 <!--components/mine/mine.wxml-->
 <view class="container">
-  <view class="navi">
-    <navigator url="../memInfo/memInfo" open-type="navigate" class="navi-text">
-      <text>个人资料</text>
-    </navigator>
+  <view style="width:100%;text-align: center;" class="flex-column">
+    <image mode="scaleToFill" class="header-image" src="{{userInfo.headUrl}}"></image>
+    <view class="name-text">{{userInfo.nickName}}</view>
   </view>
-  <view class="navi">
-    <navigator url="../howToUse/howToUse" open-type="navigate" class="navi-text">
-      <text>使用手册</text>
-    </navigator>
+  <view style="width: 100%;" >
+    <view class="header-title">屋主中心</view>
   </view>
-  <view class="navi">
-    <navigator url="../contactUs/contactUs" open-type="navigate" class="navi-text">
-      <text>联系我们</text>
-    </navigator>
+  <view class="flex-row" style="width:100%">
+    <view class="navi">
+      <navigator url="../memInfo/memInfo" open-type="navigate" class="flex-column">
+        <image src="{{dogImg}}" mode="scaleToFill" />
+        <text class="navi-text">领养狗狗</text>
+      </navigator>
+    </view>
+    <view class="navi">
+      <navigator url="../memInfo/memInfo" open-type="navigate" class="flex-column">
+        <image src="{{docImg}}" mode="scaleToFill" />
+        <text class="navi-text">我的资料</text>
+      </navigator>
+    </view>
+    <view class="navi">
+      <navigator url="../howToUse/howToUse" open-type="navigate" class="flex-column">
+        <image src="{{noteImg}}" mode="scaleToFill" />
+        <text class="navi-text">养狗指南</text>
+      </navigator>
+    </view>
+    <view class="navi">
+      <navigator url="../contactUs/contactUs" open-type="navigate" class="flex-column">
+        <image src="{{contactImg}}" mode="scaleToFill" />
+        <text class="navi-text">联系我们</text>
+      </navigator>
+    </view>
+  
   </view>
 </view>

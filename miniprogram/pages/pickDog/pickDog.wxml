@@ -3,18 +3,19 @@
   <form bindsubmit="formSubmit" style="width:100%">
     <view class="form-input">
       <label style="width:90px;">电 话：</label>
-      <input name="phoneNum" style="width:{{inputWidth}}px;" ></input>
+      <input name="phoneNum" placeholder='请输会员手机号码' style="width:{{inputWidth}}px;" bindinput="bindPhoneInput" ></input>
     </view>
     <view class="form-input">
       <label style="width:90px;">验证码：</label>
-      <input name="code" style="width:{{inputWidth}}px;" ></input>
+      <input name="code" placeholder='请输验证码' style="flex:1;" bindinput="bindCodeInput" ></input>
+      <button class="codeBtn" bindtap="tiesPhone" size="mini" disabled='{{btnDisabled}}'>{{btnValue}}</button>
     </view>
-    <view class="form-input">
+    <!-- <view class="form-input">
       <label style="width:90px;">狗狗编号：</label>
       <input name="dogId" style="width:{{inputWidth}}px;" ></input>
     </view>
     <view class="btn-area"> 
       <button type="primary"  formType="submit">提交</button>
-    </view> 
+    </view>  -->
   </form>
 </view>

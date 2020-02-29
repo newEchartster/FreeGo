@@ -4,7 +4,7 @@ const util = require('./util.js')
  * @param obj 请求对象
  * @param access_token token 过期后重新请求的token
  */
-function request(obj, path, access_token) {
+function request(path, obj, access_token) {
   const app = getApp()
   if (access_token) {
     app.globalData.access_token = access_token
@@ -22,6 +22,14 @@ function request(obj, path, access_token) {
   const domain = app.globalData.serverDomain
   let url = domain + path
   obj.url = url
+  if (!obj.fail) {
+    obj.fail = function (r) {
+      util.error('服务器请求失败：[' + r.data.code + ']:' + r.data.message)
+      util.info('请求url：[' + url + ']')
+      util.info('请求参数：[' + obj.data + ']')
+      console.error('[' + r.data.code + ']:' + r.data.message)
+    }
+  }
 
   wx.request(obj);
 }
@@ -75,65 +83,54 @@ function getOpenid(appid, appsecret, fn) {
  * @param appsecret 
  * @param nickname 微信昵称
  */
-function login(nickname, appid, appsecret, fn) {
+function login(nickname, fn) {
+  util.info('开始登录...')
   wx.login({
     //获取code
     success: function (res) {
+      util.info('微信登录成功...')
       const code = res.code //返回code
+      const app = getApp()
+      const domain = app.globalData.serverDomain
+      let url = domain + 'login?code=' + code
+      if (nickname) {
+        url += '&nickname=' + nickname
+      }
+      util.info('开始请求服务器登录...')
       wx.request({
-        url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + appsecret + '&js_code=' + code + '&grant_type=authorization_code',
-        data: {},
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res2) {
-          let openid = res2.data.openid //返回openid
-          const app = getApp()
-          app.globalData.openid = openid
-          const domain = app.globalData.serverDomain
-          let url = domain + 'login?openId=' + openid
-          if (nickname) {
-            url += '&nickname=' + nickname
-          }
-          wx.request({
-            url: url,
-            method: 'post',
-            success(res3) {
-              app.globalData.access_token = res3.data.data.access_token
-              app.globalData.logged = true
-              // 获取个人资料
-              request({
-                method: 'get',
-                success(re) {
-                  let data = re.data.data
-                  if (!data.birthday) {
-                    data.birthday = '请选择'
-                  }
-                  if (!data.address) {
-                    data.address = '请选择'
-                  }
-                  app.globalData.userInfo = data
-                  if (typeof fn === 'function') {
-                    fn(data)
-                  }
-                  util.info('已获取到用户信息，app.globalData.userInfo')
-                },
-                fail(r) {
-                  console.error('[' + r.data.code + ']:' + r.data.message)
-                  util.info('[' + r.data.code + ']:' + r.data.message)
-                }
-              }, 'api/user/info')
-            },
-            fail(r) {
-              console.error('[' + r.data.code + ']:' + r.data.message)
-              util.info('[' + r.data.code + ']:' + r.data.message)
+        url: url,
+        method: 'post',
+        success(res3) {
+          util.info('服务器登录成功...')
+          app.globalData.access_token = res3.data.data.access_token
+          app.globalData.logged = true
+          // 获取个人资料
+          request('api/user/info', {
+            success(re) {
+              util.info('获取用户信息成功...')
+              let data = re.data.data
+              if (!data.birthday) {
+                data.birthday = '请选择'
+              }
+              if (!data.address) {
+                data.address = '请选择'
+              }
+              app.globalData.userInfo = data
+              if (typeof fn === 'function') {
+                fn(data)
+              }
+              util.info('已获取到用户信息，app.globalData.userInfo')
             }
           })
+        },
+        fail(r) {
+          console.error('[' + r.data.code + ']:' + r.data.message)
+          util.info('服务器登录失败...')
+          util.info('[' + r.data.code + ']:' + r.data.message)
         }
       })
     }
   })
-  
 }
 
 module.exports = {

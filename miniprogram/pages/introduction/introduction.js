@@ -1,4 +1,4 @@
-// miniprogram/pages/member/member.js
+// miniprogram/pages/Introduction/introduction.js
 Page({
 
   /**

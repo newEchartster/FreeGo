@@ -28,15 +28,12 @@ Page({
    */
   getCode: function() {
     let phone = this.data.phone
-    httputil.request({
+    httputil.request('api/user/sms/send?phone=' + phone, {
       method: 'post',
       success(re) {
         console.log('获取验证码成功！')
-      },
-      fail(r) {
-        console.error('[' + r.data.code + ']:' + r.data.message)
       }
-    }, 'api/user/sms/send?phone=' + phone)
+    })
   },
   /**
    * 设置电话
@@ -63,7 +60,7 @@ Page({
     //   return false;
     // }
     // 后台保存
-    httputil.request({
+    httputil.request('api/store/employee/add-phone?phone=' + formData.phone, {
       method: 'post',
       data: formData,
       success(re) {
@@ -72,10 +69,13 @@ Page({
           icon: 'success',
           duration: 2000
         })
-      },
-      fail(r) {
-        console.error('[' + r.data.code + ']:' + r.data.message)
+        // 返回列表页
+        wx.navigateBack({
+          success: function(res) {
+            debugger
+          }
+        })
       }
-    }, 'api/store/employee/add-phone?phone=' + formData.phone)
+    })
   }
 })

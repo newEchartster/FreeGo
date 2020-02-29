@@ -1,0 +1,30 @@
+/* miniprogram/pages/hisMember/hisMember.wxss */
+.member-item {
+  margin-bottom: 2px;
+  background-color: #fff;
+  height: 80px;
+}
+.title {
+  display:flex;
+  flex-direction:row;
+  width: 100%;
+  background-color: #fff;
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.title-text {
+  line-height: 40px;
+  padding-left: 20px;
+}
+.title-total {
+  line-height: 40px;
+  margin-right: 20px;
+  flex: 1;
+  text-align: right;
+}
+.info-normal {
+  font-size: 14px;
+  padding: 3px 15px;
+}

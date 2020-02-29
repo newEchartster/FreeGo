@@ -33,7 +33,7 @@
       <text>新客领狗</text>
     </navigator>
   </view>
-  <view class="navi">
+  <view hidden="{{isEmp}}" class="navi">
     <navigator url="../manageMem/manageMem" open-type="navigate" class="navi-text">
       <text>员工管理</text>
     </navigator>

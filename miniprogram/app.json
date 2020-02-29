@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/login",
     "pages/index/index",
+    "pages/index2/index",
     "pages/memInfo/memInfo",
     "pages/contactUs/contactUs",
     "pages/pickDog/pickDog",
@@ -9,15 +10,17 @@
     "pages/howToUse/howToUse",
     "pages/shopDetail/shopDetail",
     "pages/welfareDetail/welfareDetail",
-    "pages/myshop/statistic/statistic",
-    "pages/manageMem/addEmp/addEmp"
+    "pages/statistic/statistic",
+    "pages/manageMem/addEmp/addEmp",
+    "pages/hisMember/hisMember",
+    "pages/introduction/introduction"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#1B2123",
-    "navigationBarTitleText": "福瑞狗主页",
-    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "Free Go",
+    "navigationBarTextStyle": "black",
     "enablePullDownRefresh": false
   },
   "sitemapLocation": "sitemap.json",

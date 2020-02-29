@@ -25,28 +25,31 @@ Page({
       util.info('登录中...')
       let appid = app.globalData.appid
       let appsecret = app.globalData.appsecret
-      httputil.login(undefined, appid, appsecret, function(r) {
+      httputil.login(undefined, function(r) {
         // 登录成功跳转到首页
         util.info('已获取到用户信息，跳转到首页')
+        if (r.type == 'DZ' || r.type == 'DY') {
+          wx.redirectTo({
+            url: '../index/index'
+          })
+        }else {
+          wx.redirectTo({
+            url: '../index2/index'
+          })
+        }
+        wx.hideLoading()
+      })
+    }else {
+      let userInfo = app.globalData.userInfo
+      if (userInfo.type == 'DZ' || userInfo.type == 'DY') {
         wx.redirectTo({
           url: '../index/index'
         })
-        wx.hideLoading()
-      })
+      } else {
+        wx.redirectTo({
+          url: '../index2/index'
+        })
+      }
     }
-    // let start = setInterval(function () {
-    //   let userInfo = app.globalData.userInfo
-    //   if (userInfo) {
-    //     clearInterval(me.interval)
-    //     // 登录成功跳转到首页
-    //     wx.redirectTo({
-    //       url: '../index/index'
-    //     })
-    //     wx.hideLoading()
-    //   }else {
-    //     util.info('未获取到用户信息')
-    //   }
-    // }, 100)
-    // me.interval = start
   }
 })

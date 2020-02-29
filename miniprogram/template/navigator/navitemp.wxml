@@ -1,8 +1,0 @@
-<!--miniprogram/template/navigator/navitemp.wxml-->
-<template name="navigator">
-  <view class="navi-bottom">
-    <view wx:for="{{navigators}}" wx:key="key" class="welfare-item">
-      <icon ></icon>
-    </view>
-  </view>
-</template>

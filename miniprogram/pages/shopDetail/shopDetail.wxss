@@ -7,14 +7,64 @@
   flex: 1;
 }
 .shop-info image {
-  width: 54px;
-  height: 30px;
-  margin: 5px;
+  width: 20px;
+  height: 20px;
+  margin: 10px 10px 10px 20px;
 }
 .shop-info view {
   width: 100%;
+  line-height:40px;
+  font-size:12px;
+  color: #353535
 }
-.item-title {
+.item-text-title {
   font-weight: bold;
   font-size: 14px;
+  margin: 10px 0 0 0;
+  color: #353535;
+}
+.item-text {
+  font-size: 12px;
+  top: 26px;
+  position: relative;
+  color: #888888;
+}
+.shop-logo {
+  will-change: 100px;
+}
+.shop-logo-image{
+  width: 80px; 
+  height: 80px; 
+  background-color: #eeeeee;
+  margin: 10px;
+}
+.welfare-item {
+  margin-bottom: 2px;
+  background-color: #fff;
+  display:flex;
+  flex-direction:row;
+  height: 100px;
+  border-bottom: 2px solid #eeeeee;
+}
+.btn-use {
+  background-color: #09bb07;
+  border-radius: 5px;
+  width: 50px;
+  height: 25px;
+  font-size: 12px;
+  color: #fff;
+  padding: 4px 9px;
+  margin-top: 40px;
+}
+.shop-title {
+  font-size: 18px;
+  color: #353535;
+  padding: 5px;
+  text-align: center;
+}
+.shop-description {
+  font-size: 14px;
+  color: #888888;
+  padding: 5px;
+  text-align: center;
 }

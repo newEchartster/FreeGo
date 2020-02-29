@@ -5,10 +5,10 @@
       <text>新增</text>
     </navigator>
   </view>
-  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" >
+  <scroll-view scroll-y="true" style="height:{{listHeight}}px;" bindscrolltolower="addMore">
     <view wx:for="{{datas}}" wx:key="key" class="flex-row-between emp-item">
       <view>
-        <view class="info-normal">{{item.name}}</view>
+        <view class="info-normal">{{item.nickName}}</view>
         <view class="info-normal">电话：{{item.phone}}</view>
         <view class="info-normal">住址：{{item.address}}</view>
       </view>

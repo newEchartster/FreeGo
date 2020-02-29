@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  background-color: white;
 }
 .flex-shop-header {
   display:flex;
@@ -17,16 +18,23 @@
 .shop-detail {
   display:flex;
   flex-direction:row;
-  padding: 5px;
+  padding: 10px;
   border-bottom:2px solid #eee;
+}
+.shop-detail-title {
+  font-size: 13px;
+  height: 26px;
+  line-height: 26px;
+  color: #000000;
 }
 .shop-detail-text {
   font-size: 12px;
   height: 20px;
   line-height: 20px;
+  color: #353535;
 }
 .shop-item {
-  width: 80px;
+  width: 25%;
   height: 80px;
   display: inline-block;
 }
@@ -35,16 +43,16 @@
   text-align: center;
 }
 .shop-name {
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
-  height: 20px;
-  line-height: 20px;
+  color: #757575;
+  height: 15px;
+  line-height: 15px;
 }
 .shop-logo-image{
   width: 60px; 
   height: 60px; 
-  background-color: #eeeeee;
-  border-radius: 50%;
+  border-radius: 15%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -53,17 +61,11 @@
   text-align: center;
 }
 .shop-logo-two-image{
-  width: 200px;
-  height: 160px;
-  background-color: #eeeeee;
+  width: 80px;
+  height: 80px;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-.shop-catagory {
-  background-color: #fff;
-  font-size: 14px;
-  color: #89A433;
-  padding: 5px 0 0 15px;
+  border-radius: 5%;
 }
 .nav-tabs{
   width: 100%;
@@ -80,21 +82,21 @@
     line-height:75rpx;
     text-align:center;
     flex:1;
-    border-bottom:1px solid #eee;
-    color:#000;
+    border-bottom:1px solid #e9e9e9;
+    color:#999999;
     font-weight:bold;
-    font-size:28rpx;
-    min-width: 80px;
+    font-size:24rpx; 
+    width: 25%; 
 }
 .active{
     line-height:75rpx;
     text-align:center;
-    color:#fc5558;
+    color:#000000;
     flex:1;
-    border-bottom:1px solid red;
+    border-bottom:1px solid #000000;
     font-weight:bold;
     font-size:28rpx;
-    min-width: 80px;
+    width: 25%; 
 }
 .show{
     display:block;
@@ -105,8 +107,13 @@
     flex: 1;
 }
 .btn-use {
-  background-color: #17d817;
-  border-radius: 10px;
+  background-color: #09bb07;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  font-size: 12px;
+  color: #fff;
+  padding: 9px;
 }
 .detail-entrance {
   width:50px;

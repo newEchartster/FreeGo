@@ -2,7 +2,7 @@
 <view class="container" style="height:{{winHeight}}px;padding-top:50px;background-color:#eeeeee;">
   <form bindsubmit="formSubmit" style="width:100%">
     <view class="shop-logo" style="text-align: center;width: 100%;">
-      <image mode="scaleToFill" bindtap="previewImg" src="{{headUrl}}"></image>
+      <image mode="scaleToFill" bindtap="previewImg" src="{{headUrl}}" data-previewurl='{{headUrl}}'></image>
       <button class="upload-btn" bindtap="upload">上传头像</button>
     </view>
     <view class="form-input">
@@ -11,11 +11,20 @@
     </view>
     <view class="form-input">
       <label>性 别：</label>
-      <input name="gender" style="width:{{inputWidth}}px;" value="{{gender}}">{{gender}}</input>
+      <radio-group name="gender" class="radio-group" bindchange="radioChange">
+        <radio class="radio" wx:for-items="{{genderRadio}}" wx:key="key" value="{{item.key}}" checked="{{item.key==gender}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
     </view>
     <view class="form-input">
       <label>电 话：</label>
-      <input name="phone" style="width:{{inputWidth}}px;" value="{{phone}}" >{{phone}}</input>
+      <input name="phone" style="width:{{inputWidth}}px;" value="{{phone}}" bindinput="bindPhoneInput">{{phone}}</input>
+    </view>
+    <view hidden='{{hidden}}' class="form-input">
+      <label>验证码：</label>
+      <input name="valiCode" placeholder='请输验证码' style="flex:1;" bindinput="bindCodeInput" ></input>
+      <button class="codeBtn" bindtap="tiesPhone" size="mini" disabled='{{btnDisabled}}'>{{btnValue}}</button>
     </view>
     <view class="form-input">
       <label>生 日：</label>

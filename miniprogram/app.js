@@ -14,7 +14,7 @@ App({
     this.globalData = {
       appid: "wx52a0703cd61e42af",
       appsecret: "91ca88dd4bd98cf5a0acbe13853d347a",
-      serverDomain: "http://47.93.36.254/api/"
+      serverDomain: "https://www.luttevip.cn/api/"
     }
   }
 

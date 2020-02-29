@@ -1,17 +1,13 @@
-const util = require('../../utils/util.js')
+// miniprogram/pages/hisMember/hisMember.js
+const app = getApp()
 const httputil = require('../../utils/httputil.js')
 
 Page({
 
   /**
    * 页面的初始数据
-   * 1，轮播图链接地址列表
-   * 2，店铺信息
-   * 3，权益列表
    */
   data: {
-    positionIcon: '/images/icon/map2.svg',
-    phoneIcon: '/images/icon/tele.svg',
     pageNo: 1,
     pageSize: 20,
     searchLoading: false, // 正在加载
@@ -23,68 +19,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let me =this
-    let shopId = options.shopId
-    let storeDetail = JSON.parse(options.storeDetail)
-    me.setData(storeDetail)
-    // 加载权益列表
-    me.loadData(1)
+    let storeId = options.shopId
+    let me = this
+    me.setData({
+      storeId: storeId
+    })
     // 获取系统信息
     wx.getSystemInfo({
       success: res => {
         me.setData({
-          imageHeight: res.windowWidth / 2.4
+          listHeight: res.windowHeight - 85
         })
       }
     })
-  },
-  /**
-     * 打开权益详细
-     */
-  openDetail: function (e) {
-    // 是否已领取
-    if (util.isMember()) {
-      let commodityId = e.target.id
-      wx.navigateTo({
-        url: '../welfareDetail/welfareDetail?commodityId=' + commodityId
-      })
-    } else {
-      wx.showModal({
-        title: '福瑞狗提示',
-        content: '您还未领取狗狗哦！领取后可享受权益.点击【确定】查看如何领取',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../introduction/introduction'
-            })
-          }
-        }
-      })
-    }
-  },
-  //预览图片
-  previewImg: function (e) {
-    util.previewImg(e)
-  },
-  /**
-   * 定位导航
-   */
-  locateShop: function () {
-    const latitude = this.data.latitude
-    const longitude = this.data.longitude
-    wx.openLocation({
-      latitude,
-      longitude,
-      scale: 18
-    })
-  },
-  /**
-   * 拨打电话
-   */
-  phoneCall: function () {
-    wx.makePhoneCall({
-      phoneNumber: this.data.shopPhone
-    })
+    // 获取核销数据
+    me.loadData(1)
   },
   /**
      * 加载数据
@@ -99,8 +48,8 @@ Page({
     wx.showLoading({
       title: '正在加载...',
     })
-    // 获取店铺权益数据
-    httputil.request('admin/commodity/page', {
+    // 获取本店会员
+    httputil.request('api/store/vip/page', {
       data: {
         pageNo: pageNum,
         pageSize: me.data.pageSize,

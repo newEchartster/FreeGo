@@ -36,3 +36,13 @@ button {
   min-height: 30px;
   background-color: rgb(169, 199, 36);
 }
+.radio-group {
+  display: flex;
+  flex-direction: row;
+}
+.codeBtn{
+  margin: 0 20px 0 0;
+  color: rgb(96, 134, 146);
+  background-color: rgb(211, 193, 193);
+  height: 100%;
+}

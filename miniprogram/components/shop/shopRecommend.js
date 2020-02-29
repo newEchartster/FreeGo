@@ -72,9 +72,11 @@ Component({
      * 进入店铺
      */
     goToShop: function (options) {
+      let me = this
       let shopId = options.target.id
+      let detail = me.getStoreDetail(shopId)
       wx.navigateTo({
-        url: '../shopDetail/shopDetail?shopId=' + shopId
+        url: '../shopDetail/shopDetail?shopId=' + shopId + '&storeDetail=' + JSON.stringify(detail)
       })
     },
     //事件处理函数
@@ -92,7 +94,6 @@ Component({
     /**
      * 加载权益数据
      * @param pageNum 页数
-     * @param isAppend 是否追加
      */
     loadData: function (pageNum) {
       let me = this
@@ -107,8 +108,7 @@ Component({
         title: '正在加载...',
       })
       // 获取分类门店
-      httputil.request({
-        method: 'get',
+      httputil.request(url, {
         success(re) {
           setTimeout(function () {
             wx.hideLoading()
@@ -137,11 +137,8 @@ Component({
             searchLoading: false,
             pageNo: pageNum
           })
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
         }
-      }, url)
+      })
     },
     swichNav: function (e) {
       var me = this;
@@ -149,7 +146,8 @@ Component({
         return false;
       } else {
         me.setData({
-          currentTab: e.target.dataset.current
+          currentTab: e.target.dataset.current,
+          allShop: [],
         })
         // 获取门店列表
         me.loadData(1)
@@ -158,32 +156,43 @@ Component({
     initData: function() {
       let me = this
       // 获取今日推荐
-      httputil.request({
-        method: 'get',
+      httputil.request('api/store/page/recommend', {
         success(re) {
           me.setData({
             jrtj: re.data.data.data == undefined ? [] : re.data.data.data
           })
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
         }
-      }, 'api/store/page/recommend')
+      })
    
       // 获取门店分类
-      httputil.request({
-        method: 'get',
+      httputil.request('admin/store/types', {
         success(re) {
           me.setData({
             category: re.data.data == undefined ? [] : re.data.data
           })
           // 获取门店列表
           me.loadData(1)
-        },
-        fail(r) {
-          console.error('[' + r.data.code + ']:' + r.data.message)
         }
-      }, 'admin/store/types')
+      })
+    },
+    getStoreDetail: function(storeId) {
+      if (storeId) {
+        let me = this
+        // 今日推荐的商铺
+        let store = me.data.jrtj
+        for(let i=0;i<store.length;i++) {
+          if (storeId == store[i].storeId) {
+            return store[i]
+          }
+        }
+        // 所有店铺
+        let store2 = me.data.allShop
+        for (let i = 0; i < store2.length; i++) {
+          if (storeId == store2[i].storeId) {
+            return store2[i]
+          }
+        }
+      }
     }
   }
 })

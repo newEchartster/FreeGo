@@ -1,5 +1,4 @@
-<!--miniprogram/pages/newIndex/newIndex.wxml-->
-<!-- 福瑞狗主页 -->
+<!-- 福瑞狗主页：店长店员使用 -->
 <view hidden="{{currentTab == 0? false: true}}">
   <welfare/>
 </view>
@@ -7,9 +6,6 @@
   <shop/>
 </view>
 <view hidden="{{currentTab == 2? false: true}}">
-  <myshop/>
-</view>
-<view hidden="{{currentTab == 3? false: true}}">
   <mine/>
 </view>
 

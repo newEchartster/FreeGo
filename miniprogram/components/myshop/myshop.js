@@ -14,8 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    logoPath: "/images/qysy/u139.jpg",
-    shopName: "光速卡丁车"
+    
   },
 
   lifetimes: {
@@ -28,20 +27,45 @@ Component({
       if (memType) {
         if (memType == 'DZ') {
           this.setData({
+            isEmp: false,
             userType: '店长'
           })
         } else {
           this.setData({
+            isEmp: true,
             userType: '店员'
           })
         }
       }
-      // TODO 获取店家信息，核销信息
-      this.setData({
-        todayHX: 5,
-        totalHX: 103,
-        memberList: 26
+      let storeId = undefined
+      if (userInfo.storeInfo) {
+        storeId = userInfo.storeInfo.storeId
+      }
+      // 获取所有核销数量
+      httputil.request('api/store/code/used/count?storeId=' + storeId, {
+        success(re) {
+          me.setData({
+            totalHX: re.data.data
+          })
+        }
       })
+      // 获取今日核销数量
+      httputil.request('api/store/code/used/day-count?storeId=' + storeId, {
+        success(re) {
+          me.setData({
+            todayHX: re.data.data
+          })
+        }
+      })
+      // 获取所有会员数量
+      httputil.request('api/store/vip/count?storeId=' + storeId, {
+        success(re) {
+          me.setData({
+            memberList: re.data.data
+          })
+        }
+      })
+      
       // 店家信息
       let storeInfo = userInfo.storeInfo
       if (storeInfo) {
@@ -66,18 +90,15 @@ Component({
         success(res) {
           let code = res.result
           // 扫码核销权益
-          httputil.request({
+          httputil.request('api/store/useCode', {
             method: 'post',
             data: {
               code: code
             },
             success(re) {
               console.log('扫码核销成功')
-            },
-            fail(r) {
-              console.error('[' + r.data.code + ']:' + r.data.message)
             }
-          }, 'api/store/useCode')
+          })
         }
       })
     },
@@ -85,18 +106,24 @@ Component({
      * 打开核销统计页面
      */
     openStatistc: function (e) {
-      let shopId = e.target.id
+      let shopId = undefined
+      if (this.data.storeInfo) {
+        shopId = this.data.storeInfo.storeId
+      }
       wx.navigateTo({
-        url: '/pages/myshop/statistic/statistic?isToday=' + shopId
+        url: '/pages/statistic/statistic?shopId=' + shopId
       })
     },
     /**
      * 打开会员列表
      */
     memberList: function () {
-      let shopId = e.target.id
+      let shopId = undefined
+      if (this.data.storeInfo) {
+        shopId = this.data.storeInfo.storeId
+      }
       wx.navigateTo({
-        url: 'statistic/statistic?isToday=' + shopId
+        url: '/pages/hisMember/hisMember?shopId=' + shopId
       })
     }
   }
