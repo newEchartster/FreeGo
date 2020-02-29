@@ -20,7 +20,8 @@ Page({
     wx.getSystemInfo({
       success: res => {
         me.setData({
-          imageHeight: res.windowWidth / 2.4
+          imageHeight: res.windowWidth / 2.4,
+          codeWidth: res.windowWidth - 40
         })
       }
     })
@@ -37,6 +38,11 @@ Page({
     httputil.request('admin/commodity/' + commodityId, {
       success(re) {
         let detail = re.data.data == undefined ? {} : re.data.data
+        let start = new Date().getTime()
+        let days = util.getTimeDiff(start, detail.endDate) + 1
+        me.setData({
+          remainsDays: days
+        })
         me.setData(detail)
       }
     })

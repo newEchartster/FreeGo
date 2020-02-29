@@ -19,7 +19,7 @@
   text-align: center;
 }
 .shop-name {
-  font-size: 12px;
+  font-size: 12pt;
   text-align: center;
   height: 20px;
   line-height: 20px;

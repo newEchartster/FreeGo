@@ -64,13 +64,13 @@
 .navi-text {
   width: 100%;
   line-height: 52px;
-  font-size: 34rpx;
+  font-size: 17pt;
   color: #007aff;
   padding-left: 15px;
 }
 .shop-name {
   line-height: 80px;
-  font-size: 22px;
+  font-size: 22pt;
   color: #fff;
 }
 .userType {

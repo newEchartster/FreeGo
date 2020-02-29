@@ -23,19 +23,19 @@
 .name-text {
   width: 100%;
   line-height: 28px;
-  font-size: 28rpx;
+  font-size: 14pt;
   color: #353535;
 }
 .navi-text {
   width: 100%;
   line-height: 24px;
-  font-size: 24rpx;
+  font-size: 12pt;
   color: #353535;
 }
 .header-title {
   background-color: #e9e9e9;
   color: #353535;
-  font-size: 15px;
+  font-size: 15pt;
   height: 30px;
   line-height: 30px;
   padding-left: 20px;

@@ -1,16 +1,19 @@
 <!--miniprogram/pages/memInfo/memInfo.wxml-->
-<view class="container" style="height:{{winHeight}}px;padding-top:50px;background-color:#eeeeee;">
+<view class="container" style="height:{{winHeight}}px">
+  <view style="width: 100%;" >
+    <view class="header-title">个人资料</view>
+  </view>
   <form bindsubmit="formSubmit" style="width:100%">
     <view class="shop-logo" style="text-align: center;width: 100%;">
       <image mode="scaleToFill" bindtap="previewImg" src="{{headUrl}}" data-previewurl='{{headUrl}}'></image>
-      <button class="upload-btn" bindtap="upload">上传头像</button>
+      <view class="upload-btn" bindtap="upload">修改头像</view>
     </view>
     <view class="form-input">
-      <label>昵 称：</label>
-      <input name="nickName" style="width:{{inputWidth}}px;" value="{{nickName}}">{{nickName}}</input>
+      <label>昵称</label>
+      <input name="nickName" style="width:{{inputWidth}}px;" bindinput="bindNameChange" value="{{nickName}}">{{nickName}}</input>
     </view>
     <view class="form-input">
-      <label>性 别：</label>
+      <label>性别</label>
       <radio-group name="gender" class="radio-group" bindchange="radioChange">
         <radio class="radio" wx:for-items="{{genderRadio}}" wx:key="key" value="{{item.key}}" checked="{{item.key==gender}}">
           <text>{{item.value}}</text>
@@ -18,24 +21,24 @@
       </radio-group>
     </view>
     <view class="form-input">
-      <label>电 话：</label>
-      <input name="phone" style="width:{{inputWidth}}px;" value="{{phone}}" bindinput="bindPhoneInput">{{phone}}</input>
-    </view>
-    <view hidden='{{hidden}}' class="form-input">
-      <label>验证码：</label>
-      <input name="valiCode" placeholder='请输验证码' style="flex:1;" bindinput="bindCodeInput" ></input>
-      <button class="codeBtn" bindtap="tiesPhone" size="mini" disabled='{{btnDisabled}}'>{{btnValue}}</button>
-    </view>
-    <view class="form-input">
-      <label>生 日：</label>
+      <label>生日</label>
       <picker mode="date" name="birthday" style="width:{{inputWidth}}px;" value="{{birthday}}" bindchange="bindDateChange">{{birthday}}</picker>
     </view>
     <view class="form-input">
-      <label>地 址：</label>
+      <label>地址：</label>
       <picker mode="region" name="address" style="width:{{inputWidth}}px;" value="{{address}}" bindchange="bindRegionChange">{{address}}</picker>
     </view>
-    <view class="btn-area"> 
+    <view class="form-input">
+      <label style="font-size:15pt;color:#353535;">+86</label>
+      <input name="phone" placeholder='请填写手机号码' style="width:{{inputWidth}}px;" value="{{phone}}" bindinput="bindPhoneInput">{{phone}}</input>
+    </view>
+    <view hidden='{{hidden}}' class="form-input">
+      <label>验证码</label>
+      <input name="valiCode" placeholder='输入验证码' style="flex:1;" bindinput="bindCodeInput" ></input>
+      <button class="codeBtn" style="font-size:10pt;line-height: 30px;" bindtap="tiesPhone" size="mini" disabled='{{btnDisabled}}'>{{btnValue}}</button>
+    </view>
+    <!-- <view class="btn-area"> 
       <button type="primary"  formType="submit">提交</button>
-    </view> 
+    </view>  -->
   </form>
 </view>

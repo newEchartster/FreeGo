@@ -21,7 +21,7 @@
       </navigator>
     </view>
     <view class="navi">
-      <navigator url="../howToUse/howToUse" open-type="navigate" class="flex-column">
+      <navigator url="../introduction/introduction" open-type="navigate" class="flex-column">
         <image src="{{noteImg}}" mode="scaleToFill" />
         <text class="navi-text">养狗指南</text>
       </navigator>

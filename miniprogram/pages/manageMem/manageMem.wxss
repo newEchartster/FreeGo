@@ -10,9 +10,9 @@
   text-align: center;
   margin-top: 25px;
   margin-right: 5px;
-  font-size: 14px;
+  font-size: 14pt;
 }
 .info-normal {
-  font-size: 14px;
+  font-size: 14pt;
   padding: 3px 15px;
 }

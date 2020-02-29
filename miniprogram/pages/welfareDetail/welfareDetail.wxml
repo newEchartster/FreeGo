@@ -12,28 +12,32 @@
     </block>
   </swiper>
   <!-- 权益详细 -->
-  <view class="flex-row-between">
-    <view>{{title}}</view>
-    <view>权益价值：{{price}}元</view>
+  <view style="width:100%;">
+    <view class="label-text">{{title}}</view>
   </view>
+  <!-- <view class="flex-row-between">
+    <view>权益价值：{{price}}元</view>
+  </view> -->
   <!-- 条码 -->
-  <view class="barcode">
+  <view class="barcode" style="width:{{codeWidth}}px;">
     <canvas canvas-id="barcode" />
     <view>{{codeStr}}</view>
-    <text>请将以上条码出示给店员使用</text>
-    <view>有效期{{startDate}}至{{endDate}}</view>
+    <view class="tips">请将以上条码出示给店员</view>
+    <view class="tips">若无法识别，请重新生成条码</view>
+    <view class="tips">剩余有效期{{remainsDays}}天</view>
   </view>
   <!-- 使用须知 -->
-  <view>
-    <view style="font-weight:bold;">使用须知:</view>
-    <view style="font-weight:bold;">{{remark}}</view>
-    <!-- <view wx:for="{{remark}}" wx:key="key">
-      {{item}}
-    </view> -->
+  <view style="width:100%;">
+    <view class="label-text">权益</view>
+    <view class="label-text">使用须知</view>
+    <view class="remark-text">1、本权益券不兑换现金，不参与外送服务</view>
+    <view class="remark-text">2、本券不得与其他优惠同时使用</view>
+    <view class="remark-text">3、请在消费前出示使用</view>
+    <view class="remark-text">4、产品和服务请与商家实际提供为准</view>
   </view>
   <!-- 门店电话，位置 -->
-  <view class="flex-row-around position-bottom">
+  <!-- <view class="flex-row-around position-bottom">
     <view class="btn-use" bindtap="phoneCall">拨打门店电话</view>
     <view class="btn-use" bindtap="locateShop">查看门店位置</view>
-  </view>
+  </view> -->
 </view>

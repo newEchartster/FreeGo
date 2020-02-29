@@ -25,7 +25,7 @@ page {
   width: 100%;
   padding: 0;
   line-height: 104rpx;
-  font-size: 34rpx;
+  font-size: 17pt;
   color: #007aff;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
@@ -48,7 +48,7 @@ page {
 .request-text {
   color: #222;
   padding: 20rpx 0;
-  font-size: 24rpx;
+  font-size: 12pt;
   line-height: 36rpx;
   word-break: break-all;
 }
@@ -62,7 +62,7 @@ page {
 }
 
 .guide .headline {
-  font-size: 34rpx;
+  font-size: 17pt;
   font-weight: bold;
   color: #555;
   line-height: 40rpx;
@@ -70,14 +70,14 @@ page {
 
 .guide .p {
   margin-top: 20rpx;
-  font-size: 28rpx;
+  font-size: 14pt;
   line-height: 36rpx;
   color: #666;
 }
 
 .guide .code {
   margin-top: 20rpx;
-  font-size: 28rpx;
+  font-size: 14pt;
   line-height: 36rpx;
   color: #666;
   background: white;
@@ -88,7 +88,7 @@ page {
   margin-top: 20rpx;
   background: rgba(0, 0, 0, 0.8);
   padding: 20rpx;
-  font-size: 28rpx;
+  font-size: 14pt;
   line-height: 36rpx;
   border-radius: 6rpx;
   color: #fff;
@@ -122,7 +122,7 @@ page {
 
 .guide .copyBtn {
   width: 180rpx;
-  font-size: 20rpx;
+  font-size: 10pt;
   margin-top: 16rpx;
   margin-left: 0;
 }

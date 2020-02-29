@@ -14,10 +14,10 @@ Page({
     second: 60,
     genderRadio: [{
       key: 'M',
-      value: '男'
+      value: '男性'
     }, {
       key: 'F',
-      value: '女'
+      value: '女性'
     }]
   },
 
@@ -56,18 +56,18 @@ Page({
    * 保存个人资料
    */
   formSubmit: function(e) {
-    let formData = e.detail.value
+    let formData = this.data
     // 校验
-    if (!this.WxValidate.checkForm(e)) {
-      //表单元素验证不通过，此处给出相应提示
-      let error = this.WxValidate.errorList[0];
-      wx.showToast({
-        title: error.msg,
-        icon: 'none',
-        duration: 3000
-      })
-      return false;
-    }
+    // if (!this.WxValidate.checkForm(e)) {
+    //   //表单元素验证不通过，此处给出相应提示
+    //   let error = this.WxValidate.errorList[0];
+    //   wx.showToast({
+    //     title: error.msg,
+    //     icon: 'none',
+    //     duration: 3000
+    //   })
+    //   return false;
+    // }
     let url = 'api/user/update?nickName=' + formData.nickName
       + '&gender=' + formData.gender
       + '&phone=' + formData.phone
@@ -93,6 +93,19 @@ Page({
     this.setData({
       birthday: e.detail.value
     })
+    this.formSubmit();
+  },
+  bindNameChange: function(e) {
+    this.setData({
+      nickName: e.detail.value
+    })
+    this.formSubmit();
+  },
+  radioChange: function(e) {
+    this.setData({
+      gender: e.detail.value
+    })
+    this.formSubmit();
   },
   /**
    * 地址修改
@@ -101,6 +114,7 @@ Page({
     this.setData({
       address: e.detail.value
     })
+    this.formSubmit();
   },
   /**
    * 初始化校验
@@ -157,6 +171,7 @@ Page({
     this.setData({
       phone: val
     })
+    this.formSubmit();
     if (val != '') {
       this.setData({
         hidden: false,

@@ -22,7 +22,7 @@ page {
 }
 
 .tab-text {
-  font-size: 18rpx;
+  font-size: 9pt;
   line-height: 35rpx;
   color: #999999;
 }
@@ -40,7 +40,7 @@ page {
   flex: 1;
   color: #999999;
   font-weight: bold;
-  font-size: 18rpx;
+  font-size: 9pt;
 }
 
 .active {
@@ -49,12 +49,12 @@ page {
   color: black;
   flex: 1;
   font-weight: bold;
-  font-size: 18rpx;
+  font-size: 9pt;
 }
 
 .active .tab-text {
   color: black;
-  font-size: 18rpx;
+  font-size: 9pt;
   line-height: 35rpx;
 }
 
