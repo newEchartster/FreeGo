@@ -8,11 +8,11 @@
   </block>
   <!-- 权益汇总 -->
   <view class="flex-header">
-    <view class="header-item" style="border-right-width:2px;">
+    <view class="header-item">
       <view class="header-item-view">可用权益</view>
       <text class="header-item-text">{{canUseCount}}次</text>
     </view>
-    <view class="header-item" style="border-right-width:2px;">
+    <view class="header-item">
       <view class="header-item-view">权益价值</view>
       <text class="header-item-text">{{totalValue}}元</text>
     </view>

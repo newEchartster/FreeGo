@@ -113,7 +113,7 @@
   height: 50px;
   font-size: 10pt;
   color: #fff;
-  padding: 9px;
+  padding: 7px;
 }
 .detail-entrance {
   width:50px;

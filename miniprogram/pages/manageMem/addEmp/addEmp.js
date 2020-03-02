@@ -48,33 +48,23 @@ Page({
    */
   formSubmit: function (e) {
     let formData = e.detail.value
-    // 校验
-    // if (!this.WxValidate.checkForm(e)) {
-    //   //表单元素验证不通过，此处给出相应提示
-    //   let error = this.WxValidate.errorList[0];
-    //   wx.showToast({
-    //     title: error.msg,
-    //     icon: 'none',
-    //     duration: 3000
-    //   })
-    //   return false;
-    // }
     // 后台保存
     httputil.request('api/store/employee/add-phone?phone=' + formData.phone, {
       method: 'post',
       data: formData,
       success(re) {
         wx.showToast({
-          title: '添加成功！',
+          title: re.data.msg,
           icon: 'success',
           duration: 2000
         })
-        // 返回列表页
-        wx.navigateBack({
-          success: function(res) {
-            debugger
-          }
-        })
+        if (re.data.code == '000') {
+          // 返回列表页
+          wx.navigateBack({
+            success: function(res) {
+            }
+          })
+        }
       }
     })
   }

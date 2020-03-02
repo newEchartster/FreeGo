@@ -10,7 +10,7 @@
   display:flex;
   flex-direction:row;
   justify-content:flex-start;
-  background-color: #6A7D8F;
+  background-color: #353535;
   width: 100%;
   height: 80px;
 }
@@ -45,17 +45,18 @@
 }
 .header-item-view {
   padding-top: 20px;
+  font-size: 15pt;
+  color: #353535;
 }
 .header-item-text {
-  color: red;
+  color: #09bb07;
+  font-size: 14pt;
 }
 .navi {
   height: 120rpx;
   width: 100%;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-left: none;
-  border-right: none;
+  border-bottom: 1px solid #e9e9e9;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,22 +65,25 @@
 .navi-text {
   width: 100%;
   line-height: 52px;
-  font-size: 17pt;
-  color: #007aff;
+  font-size: 16pt;
+  color: #000000;
   padding-left: 15px;
 }
 .shop-name {
   line-height: 80px;
-  font-size: 22pt;
+  font-size: 15pt;
   color: #fff;
+  flex: 1;
 }
 .userType {
-  line-height: 20px;
-  width: 50px;
+  line-height: 30px;
+  width: 60px;
   text-align: center;
-  height: 20px;
+  height: 30px;
   background-color: #fff;
-  margin-top: 30px;
-  margin-left: 5px;
-  border-radius: 10px;
+  color: #353535;
+  font-size: 14pt;
+  margin-top: 25px;
+  margin-right: 10px;
+  border-radius: 3px;
 }

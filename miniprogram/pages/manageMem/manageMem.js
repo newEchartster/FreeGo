@@ -27,8 +27,15 @@ Page({
         })
       }
     })
+  },
+  onShow: function() {
+    // 重新加载
+    this.setData({
+      datas: [],
+      total: 0
+    })
     // 获取核销数据
-    me.loadData(1)
+    this.loadData(1)
   },
   /**
      * 加载数据
@@ -84,21 +91,20 @@ Page({
     let employeeId = options.target.id
     httputil.request('api/store/employee/del?employeeId=' + employeeId, {
       method: 'post',
-      // data: {
-      //   employeeId: employeeId
-      // },
-      success(re) {debugger
+      success(re) {
         wx.showToast({
-          title: '删除成功！',
+          title: re.data.msg,
           icon: 'success',
           duration: 2000
         })
-        // 重新加载
-        me.setData({
-          datas: [],
-          total: 0
-        })
-        me.loadData(1)
+        if(re.data.code == '000') {
+          // 重新加载
+          me.setData({
+            datas: [],
+            total: 0
+          })
+          me.loadData(1)
+        }
       }
     })
   },

@@ -3,16 +3,45 @@
   margin-bottom: 2px;
   background-color: #fff;
   height: 80px;
+  border-bottom: 1px solid #e9e9e9;
 }
 .btn-del {
-  width: 50px;
-  height: 24px;
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
   text-align: center;
   margin-top: 25px;
   margin-right: 5px;
-  font-size: 14pt;
+  font-size: 12pt;
+  border-radius: 3px;
+  background-color: #e9e9e9;
 }
 .info-normal {
   font-size: 14pt;
-  padding: 3px 15px;
+  padding: 8px 5px;
+  color: #353535;
+}
+.info-phone {
+  padding: 5px;
+  color:#888888;
+  font-size:12pt;
+}
+.navi {
+  height: 120rpx;
+  width: 100%;
+  background: #09bb07;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+}
+.navi-text {
+  width: 100%;
+  line-height: 52px;
+  font-size: 18pt;
+  color: #fff;
+  padding-left: 0px;
 }

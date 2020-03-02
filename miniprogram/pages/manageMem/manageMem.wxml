@@ -1,18 +1,20 @@
 <!--miniprogram/pages/manageMem/manageMem.wxml-->
 <view class="container">
-  <view class="navi">
-    <navigator url="addEmp/addEmp" open-type="navigate" class="navi-text">
-      <text>新增</text>
-    </navigator>
-  </view>
   <scroll-view scroll-y="true" style="height:{{listHeight}}px;" bindscrolltolower="addMore">
     <view wx:for="{{datas}}" wx:key="key" class="flex-row-between emp-item">
-      <view>
-        <view class="info-normal">{{item.nickName}}</view>
-        <view class="info-normal">电话：{{item.phone}}</view>
-        <view class="info-normal">住址：{{item.address}}</view>
+      <view style="text-align: center;width: 60px;padding: 10px;">
+        <image mode="scaleToFill" bindtap="previewImg" src="{{headUrl}}" data-previewurl='{{headUrl}}'></image>
       </view>
-      <view bindtap="delEmp" id="{{item.uid}}" class="btn-use btn-del" style="width:40px;">删除</view>
+      <view style="flex:1;">
+        <view class="info-normal">{{item.nickName}}</view>
+        <view class="info-phone">{{item.phone}}</view>
+      </view>
+      <view bindtap="delEmp" id="{{item.uid}}" class="btn-use btn-del">取消</view>
     </view>
   </scroll-view>
+  <view class="navi">
+    <navigator url="addEmp/addEmp" open-type="navigate" class="navi-text">
+      <text>添加员工</text>
+    </navigator>
+  </view>
 </view>
