@@ -1,4 +1,5 @@
 <!--miniprogram/pages/shopDetail/shopDetail.wxml-->
+<wxs src="../../filter.wxs" module="filter" />
 <view class="container background-white">
   <!-- 轮播图 -->
   <swiper style="width:100%;height:{{imageHeight}}px;" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
@@ -37,7 +38,7 @@
       <!-- 详细 -->
       <view style="flex:1;" >
         <view class="item-text-title">{{item.title}}</view>
-        <view class="item-text" style="top:20px;">有效期：{{item.startDate}}-{{item.endDate}}</view>
+        <view class="item-text" style="top:20px;">剩余有效期：{{filter.getLeftDays(now, item.endTime)}}天</view>
         <view class="item-text">数量：{{item.num}}<text style="margin-left:20px;">价值：{{item.price}}元</text></view>
       </view>
       <button bindtap="openDetail" id="{{item.commodityId}}" style="width:50px;min-height:25px;margin-right: 10px;" class="btn-use">使用</button>

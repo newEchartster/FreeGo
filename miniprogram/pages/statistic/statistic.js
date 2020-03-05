@@ -19,9 +19,13 @@ Page({
    */
   onLoad: function (options) {
     let storeId = options.shopId
+    let istoday = options.istoday || 0
     let me = this
+    let now = new Date().getTime()
     me.setData({
-      storeId: storeId
+      storeId: storeId,
+      istoday: istoday,
+      now: now
     })
     // 获取系统信息
     wx.getSystemInfo({

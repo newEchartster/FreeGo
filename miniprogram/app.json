@@ -13,7 +13,8 @@
     "pages/statistic/statistic",
     "pages/manageMem/addEmp/addEmp",
     "pages/hisMember/hisMember",
-    "pages/introduction/introduction"
+    "pages/introduction/introduction",
+    "pages/dog/dogInfo"
   ],
   "window": {
     "backgroundColor": "#ffffff",

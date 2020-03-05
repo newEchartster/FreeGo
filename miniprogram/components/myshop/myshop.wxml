@@ -9,13 +9,13 @@
     <view class="userType">{{userType}}</view>
   </view>
   <view class="flex-header">
-    <view class="header-item" bindtap="openStatistc">
+    <view class="header-item">
       <view class="header-item-view">今日核销</view>
-      <text class="header-item-text">{{todayHX}}</text>
+      <text class="header-item-text" id="today" bindtap="openStatistc">{{todayHX}}</text>
     </view>
-    <view class="header-item" bindtap="openStatistc">
+    <view class="header-item">
       <view class="header-item-view">累计核销</view>
-      <text class="header-item-text">{{totalHX}}</text>
+      <text class="header-item-text" bindtap="openStatistc">{{totalHX}}</text>
     </view>
     <view class="header-item" bindtap="memberList">
       <view class="header-item-view">会员数量</view>

@@ -8,7 +8,13 @@
     <view class="header-title">屋主中心</view>
   </view>
   <view class="flex-row" style="width:100%">
-    <view class="navi">
+    <view class="navi" hidden="{{!haveDog}}">
+      <navigator url="../dog/dogInfo" open-type="navigate" class="flex-column">
+        <image src="{{dogImg}}" mode="scaleToFill" />
+        <text class="navi-text">我的狗狗</text>
+      </navigator>
+    </view>
+    <view class="navi" hidden="{{haveDog}}">
       <navigator url="../memInfo/memInfo" open-type="navigate" class="flex-column">
         <image src="{{dogImg}}" mode="scaleToFill" />
         <text class="navi-text">领养狗狗</text>

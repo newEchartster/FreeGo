@@ -1,18 +1,20 @@
 <!--miniprogram/pages/hisMember/hisMember.wxml-->
 <view class="container">
   <view class="title">
-    <view class="title-text">会员总数</view>
+    <view class="title-text">总记</view>
     <view class="title-total">{{total}}</view>
   </view>
   <scroll-view scroll-y="true" style="height:{{listHeight}}px;" bindscrolltolower="addMore">
     <view wx:for="{{datas}}" wx:key="key" class="flex-normal member-item">
-      <view style="width:80px">
+      <view style="text-align: center;width: 60px;padding: 10px;">
         <image mode="scaleToFill" class="shop-logo-image" src="{{item.headUrl}}"></image>
       </view>
       <view style="flex:1;">
         <view class="info-normal">{{item.nickName}}</view>
-        <view class="info-normal">电话：{{item.phone}}</view>
-        <view class="info-normal">住址：{{item.address}} <block>{{visitDate}} 首次到店</block></view>
+        <view class="flex-normal">
+          <view class="info-phone">{{item.phone}}</view> 
+          <view class="info-phone" style="right: 20px;position: absolute;">{{visitDate}} 首次到店</view>
+        </view>
       </view>
     </view>
   </scroll-view>

@@ -110,8 +110,12 @@ Component({
       if (this.data.storeInfo) {
         shopId = this.data.storeInfo.storeId
       }
+      let url = '/pages/statistic/statistic?shopId=' + shopId
+      if (e.currentTarget.id == 'today') {
+        url += '&istoday=' + 1
+      }
       wx.navigateTo({
-        url: '/pages/statistic/statistic?shopId=' + shopId
+        url: url
       })
     },
     /**

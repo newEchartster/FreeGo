@@ -1,5 +1,6 @@
 // components/mine/mine.js
 const app = getApp()
+const util = require('../../utils/util.js')
 
 Component({
   /**
@@ -16,7 +17,8 @@ Component({
     dogImg: '/images/icon/dog.png',
     contactImg: '/images/icon/contact.svg',
     docImg: '/images/icon/doc.svg',
-    noteImg: '/images/icon/note.svg'
+    noteImg: '/images/icon/note.svg',
+    haveDog: true
   },
 
   /**
@@ -37,8 +39,10 @@ Component({
         }
       })
       if (app.globalData.userInfo) {
+        let haveDog = util.isMember()
         me.setData({
-          userInfo: app.globalData.userInfo
+          userInfo: app.globalData.userInfo,
+          haveDog: haveDog
         })
       }
     },

@@ -25,18 +25,20 @@ Page({
   onLoad: function (options) {
     let me =this
     let shopId = options.shopId
-    let storeDetail = JSON.parse(options.storeDetail)
-    me.setData(storeDetail)
-    // 加载权益列表
-    me.loadData(1)
+    let now = new Date().getTime()
     // 获取系统信息
     wx.getSystemInfo({
       success: res => {
         me.setData({
-          imageHeight: res.windowWidth / 2.4
+          imageHeight: res.windowWidth / 2.4,
+          now: now
         })
       }
     })
+    let storeDetail = JSON.parse(options.storeDetail)
+    me.setData(storeDetail)
+    // 加载权益列表
+    me.loadData(1)
   },
   /**
      * 打开权益详细
