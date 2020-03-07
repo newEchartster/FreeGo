@@ -30,7 +30,7 @@
   </view>
   <view class="navi">
     <navigator url="../pickDog/pickDog" open-type="navigate" class="navi-text">
-      <text>新客发码</text>
+      <text>新客领狗</text>
     </navigator>
   </view>
   <view hidden="{{isEmp}}" class="navi">

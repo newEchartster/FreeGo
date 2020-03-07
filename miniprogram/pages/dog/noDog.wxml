@@ -1,0 +1,18 @@
+<!--miniprogram/pages/dog/noDog.wxml-->
+<wxs src="../../filter.wxs" module="filter" />
+<view class="container">
+  <view class="header-view">
+    <image mode="scaleToFill" class="header-image" src="{{dogImg}}"></image>
+    <view class="name-text">未领养</view>
+  </view>
+  <view style="width: 100%;" >
+    <view class="header-title">领狗提示</view>
+  </view>
+  <view class="normal-view">
+    <view class="text">1.请前往附近门店或心仪的门店领取</view>
+    <view class="text">2.门店工作人员会向您索取手机以发放狗狗</view>
+    <view class="text">3.领养狗狗需要支付一定的费用给领养地</view>
+    <view class="text">4.成功领养后，将会享受到狗狗带给您的特权哦</view>
+    <view class="text">5.狗狗在领养地可能比其它狗狗更多特权哦</view>
+  </view>
+</view>

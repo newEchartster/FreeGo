@@ -15,7 +15,7 @@
       </navigator>
     </view>
     <view class="navi" hidden="{{haveDog}}">
-      <navigator url="../memInfo/memInfo" open-type="navigate" class="flex-column">
+      <navigator url="../dog/noDog" open-type="navigate" class="flex-column">
         <image src="{{dogImg}}" mode="scaleToFill" />
         <text class="navi-text">领养狗狗</text>
       </navigator>

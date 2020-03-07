@@ -1,21 +1,14 @@
 <!--miniprogram/pages/pickDog/pickDog.wxml-->
-<view class="container" style="height:{{winHeight}}px;padding-top:150px;background-color:#eeeeee;">
+<view class="container" style="padding-top:150px;">
   <form bindsubmit="formSubmit" style="width:100%">
     <view class="form-input">
-      <label style="width:90px;">电 话：</label>
-      <input name="phoneNum" placeholder='请输会员手机号码' style="width:{{inputWidth}}px;" bindinput="bindPhoneInput" ></input>
+      <label style="font-size:15pt;color:#353535;">+86</label>
+      <input name="phoneNum" placeholder='请输入会员手机号码' style="width:{{inputWidth}}px;" bindinput="bindPhoneInput" ></input>
     </view>
-    <view class="form-input">
-      <label style="width:90px;">验证码：</label>
-      <input name="code" placeholder='请输验证码' style="flex:1;" bindinput="bindCodeInput" ></input>
-      <button class="codeBtn" bindtap="tiesPhone" size="mini" disabled='{{btnDisabled}}'>{{btnValue}}</button>
+    <view hidden='{{hidden}}' class="form-input">
+      <label>验证码</label>
+      <input name="valiCode" placeholder='输入验证码' style="flex:1;" bindinput="bindCodeInput" ></input>
+      <button class="codeBtn" style="font-size:10pt;line-height: 30px;" bindtap="tiesPhone" size="mini" disabled='{{btnDisabled}}'>{{btnValue}}</button>
     </view>
-    <!-- <view class="form-input">
-      <label style="width:90px;">狗狗编号：</label>
-      <input name="dogId" style="width:{{inputWidth}}px;" ></input>
-    </view>
-    <view class="btn-area"> 
-      <button type="primary"  formType="submit">提交</button>
-    </view>  -->
   </form>
 </view>

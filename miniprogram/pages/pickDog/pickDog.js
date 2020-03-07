@@ -29,6 +29,7 @@ Page({
         title: '请填写正确手机号',
         duration: 2000
       })
+      return
     }
     httputil.request('api/user/sms/send?phone=' + phone, {
       method: 'post',
@@ -44,15 +45,29 @@ Page({
     this.setData({
       phone: val
     })
+    if (val != '') {
+      this.setData({
+        hidden: false,
+        btnValue: '获取验证码'
+      })
+    } else {
+      this.setData({
+        hidden: true
+      })
+    }
   },
   bindCodeInput(e) {
-    var val = e.detail.value
+    var val = e.detail.value;
     if (val.length == 6) {
       let phone = this.data.phone
       httputil.request('api/store/dog/add?phone=' + phone, {
         method: 'post',
         success(re) {
-          debugger
+          wx.showToast({
+            title: re.data.msg,
+            icon: 'success',
+            duration: 5000
+          })
         }
       })
     }

@@ -152,7 +152,7 @@ Component({
           success(res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '../introduction/introduction'
+                url: '../doc/noDog'
               })
             }
           }

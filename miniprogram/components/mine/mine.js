@@ -17,8 +17,7 @@ Component({
     dogImg: '/images/icon/dog.png',
     contactImg: '/images/icon/contact.svg',
     docImg: '/images/icon/doc.svg',
-    noteImg: '/images/icon/note.svg',
-    haveDog: true
+    noteImg: '/images/icon/note.svg'
   },
 
   /**
