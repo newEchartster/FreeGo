@@ -25,7 +25,7 @@
 }
 .item-text {
   font-size: 12pt;
-  top: 18px;
+  top: 15px;
   position: relative;
   color: #888888;
 }
@@ -51,7 +51,7 @@
   border-radius: 5px;
   width: 50px;
   height: 30px;
-  font-size: 12pt;
+  font-size: 10pt;
   color: #fff;
   padding: 4px 9px;
   margin-top: 35px;

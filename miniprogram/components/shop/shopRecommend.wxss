@@ -85,7 +85,7 @@
     border-bottom:1px solid #e9e9e9;
     color:#999999;
     font-weight:bold;
-    font-size:12pt; 
+    font-size:11pt; 
     width: 25%; 
 }
 .active{
@@ -95,7 +95,7 @@
     flex:1;
     border-bottom:1px solid #000000;
     font-weight:bold;
-    font-size:14pt;
+    font-size:13pt;
     width: 25%; 
 }
 .show{

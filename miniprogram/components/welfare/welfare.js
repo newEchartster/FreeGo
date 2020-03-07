@@ -45,8 +45,10 @@ Component({
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () {
       let me = this
+      let now = new Date().getTime()
       me.setData({
-        search: this.search.bind(this)
+        search: this.search.bind(this),
+        now: now
       })
       if (app.globalData.userInfo) {
         me.setData({
@@ -152,7 +154,7 @@ Component({
           success(res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '../doc/noDog'
+                url: '../dog/noDog'
               })
             }
           }

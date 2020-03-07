@@ -57,7 +57,7 @@ Page({
         success(res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '../introduction/introduction'
+              url: '../dog/noDog'
             })
           }
         }
