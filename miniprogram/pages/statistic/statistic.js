@@ -1,5 +1,6 @@
 // miniprogram/pages/myshop/statistic/statistic.js
 const httputil = require('../../utils/httputil.js')
+const util = require('../../utils/util.js')
 
 Page({
 
@@ -51,13 +52,17 @@ Page({
     wx.showLoading({
       title: '正在加载...',
     })
+    let data = {
+      pageNo: pageNum,
+      pageSize: me.data.pageSize,
+      storeId: me.data.storeId
+    }
+    if(me.data.istoday == '1') {
+      data.useDate = util.formatDate(new Date())
+    }
     // 获取核销记录
     httputil.request('api/store/code/used/page', {
-      data: {
-        pageNo: pageNum,
-        pageSize: me.data.pageSize,
-        storeId: me.data.storeId
-      },
+      data: data,
       success(re) {
         setTimeout(function () {
           wx.hideLoading()

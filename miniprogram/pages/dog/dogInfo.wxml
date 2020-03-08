@@ -11,7 +11,7 @@
   </view>
   <view class="normal-view" style="width:100%">
     <view class="title">领养地点</view>
-    <view class="text">{{shopId}}</view>
+    <view class="text">{{storeInfo.name}}</view>
   </view>
   <view class="normal-view" style="width:100%">
     <view class="title">剩余领养期</view>
