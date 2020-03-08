@@ -1,2 +1,14 @@
 /* miniprogram/pages/manageMem/addEmp/addEmp.wxss */
 @import "../../memInfo/memInfo.wxss";
+
+.btn-add {
+  position: absolute;
+  bottom: 0;
+  margin: 0px;
+  border-radius: 0;
+  height: 50px;
+  line-height: 50px;
+  padding: 0px;
+  font-weight: 100;
+  font-size: 16pt;
+}

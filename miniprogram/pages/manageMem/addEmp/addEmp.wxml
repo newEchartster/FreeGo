@@ -1,17 +1,15 @@
 <!--miniprogram/pages/manageMem/addEmp/addEmp.wxml-->
-<view class="container" style="height:{{winHeight}}px;padding-top:150px;background-color:#eeeeee;">
+<view class="container" style="padding-top:150px;">
   <form bindsubmit="formSubmit" style="width:100%">
     <view class="form-input">
-      <label>电 话：</label>
-      <input name="phone" style="width:{{inputWidth}}px;" bindblur="setPhone" ></input>
+      <label style="font-size:15pt;color:#353535;">+86</label>
+      <input name="phoneNum" placeholder='请输入员工手机号码' style="width:{{inputWidth}}px;" bindblur="setPhone" ></input>
     </view>
-    <view class="form-input">
-      <label>验证码：</label>
-      <input name="code" style="width:100px;" ></input>
-      <view class="btn-use" bindtap="getCode">获取验证码</view>
-    </view>
-    <view class="btn-area"> 
-      <button type="primary" formType="submit">提交</button>
-    </view>
+    <!-- <view hidden='{{hidden}}' class="form-input">
+      <label>验证码</label>
+      <input name="valiCode" placeholder='输入验证码' style="flex:1;" bindinput="bindCodeInput" ></input>
+      <button class="codeBtn" style="font-size:10pt;line-height: 30px;" bindtap="tiesPhone" size="mini" disabled='{{btnDisabled}}'>{{btnValue}}</button>
+    </view> -->
+    <button type="primary" formType="submit" class="btn-add" style="background-color: #09bb07;width:100%;">确认添加</button>
   </form>
 </view>

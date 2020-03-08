@@ -27,7 +27,7 @@
   font-size:12pt;
 }
 .navi {
-  height: 120rpx;
+  height: 100rpx;
   width: 100%;
   background: #09bb07;
   display: flex;
@@ -40,8 +40,8 @@
 }
 .navi-text {
   width: 100%;
-  line-height: 52px;
-  font-size: 18pt;
+  line-height: 50px;
+  font-size: 16pt;
   color: #fff;
   padding-left: 0px;
 }
