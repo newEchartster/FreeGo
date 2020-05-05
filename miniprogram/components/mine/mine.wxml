@@ -1,35 +1,25 @@
 <!--components/mine/mine.wxml-->
 <view class="container">
   <view style="width:100%;text-align: center;" class="flex-column">
-    <image mode="scaleToFill" class="header-image" src="{{userInfo.headUrl}}"></image>
-    <view class="name-text">{{userInfo.nickName}}</view>
+    <view class="header-image">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <open-data class="name-text"type="userNickName"></open-data>
   </view>
   <view style="width: 100%;" >
     <view class="header-title">屋主中心</view>
   </view>
   <view class="flex-row" style="width:100%">
-    <view class="navi" hidden="{{!haveDog}}">
-      <navigator url="../dog/dogInfo" open-type="navigate" class="flex-column">
-        <image src="{{dogImg}}" mode="scaleToFill" />
-        <text class="navi-text">我的狗狗</text>
-      </navigator>
-    </view>
-    <view class="navi" hidden="{{haveDog}}">
-      <navigator url="../dog/noDog" open-type="navigate" class="flex-column">
-        <image src="{{dogImg}}" mode="scaleToFill" />
-        <text class="navi-text">领养狗狗</text>
-      </navigator>
-    </view>
     <view class="navi">
-      <navigator url="../memInfo/memInfo" open-type="navigate" class="flex-column">
+      <navigator url="" open-type="navigate" class="flex-column">
         <image src="{{docImg}}" mode="scaleToFill" />
-        <text class="navi-text">我的资料</text>
+        <text class="navi-text">话费95折</text>
       </navigator>
     </view>
     <view class="navi">
       <navigator url="../introduction/introduction" open-type="navigate" class="flex-column">
         <image src="{{noteImg}}" mode="scaleToFill" />
-        <text class="navi-text">养狗指南</text>
+        <text class="navi-text">视频会员6折</text>
       </navigator>
     </view>
     <view class="navi">

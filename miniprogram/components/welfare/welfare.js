@@ -23,15 +23,15 @@ Component({
     loadingCompleted: false, // 已加载完数据
     precision: [
       {
-        value: 6,
+        value: 1,
         text: '1千米内'
       },
       {
-        value: 5,
+        value: 2,
         text: '2千米内'
       },
       {
-        value: 4,
+        value: 20,
         text: '20千米内'
       },
       {
@@ -268,30 +268,6 @@ Component({
           }
         })
       }
-      // 获取权益券数量
-      httputil.request('api/user/code/count/unuse', {
-        success(re) {
-          me.setData({
-            canUseCount: re.data.data == undefined ? 0 : re.data.data
-          })
-        }
-      })
-      // 获取权益券价值
-      httputil.request('api/user/code/amount/unuse', {
-        success(re) {
-          me.setData({
-            totalValue: re.data.data == undefined ? 0 : re.data.data
-          })
-        }
-      })
-      // 获取权益优惠值
-      httputil.request('api/user/code/amount/used', {
-        success(re) {
-          me.setData({
-            saveValue: re.data.data == undefined ? 0 : re.data.data
-          })
-        }
-      })
 
       // 获取门店权益
       me.loadData(1, false)

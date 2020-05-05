@@ -14,7 +14,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    
+    totalHX: 0,//总共核销
+    todayHX: 0 //今日核销
   },
 
   lifetimes: {
@@ -37,43 +38,35 @@ Component({
           })
         }
       }
-      let storeId = undefined
-      if (userInfo.storeInfo) {
-        storeId = userInfo.storeInfo.storeId
-      }
-      // 获取所有核销数量
-      httputil.request('api/store/code/used/count?storeId=' + storeId, {
-        success(re) {
-          me.setData({
-            totalHX: re.data.data
-          })
-        }
-      })
-      // 获取今日核销数量
-      httputil.request('api/store/code/used/day-count?storeId=' + storeId, {
-        success(re) {
-          me.setData({
-            todayHX: re.data.data
-          })
-        }
-      })
-      // 获取所有会员数量
-      httputil.request('api/store/vip/count?storeId=' + storeId, {
-        success(re) {
-          me.setData({
-            memberList: re.data.data
-          })
-        }
-      })
-      
+
       // 店家信息
       let storeInfo = userInfo.storeInfo
-      if (storeInfo) {
+      if (userInfo.storeInfo) {
         this.setData({
           logoPath: storeInfo.imgUrl,
           shopName: storeInfo.name
         })
+        let storeId = userInfo.storeInfo.storeId
+        if (storeId) {
+          // 获取所有核销数量
+          httputil.request('api/store/code/used/count?storeId=' + storeId, {
+            success(re) {
+              me.setData({
+                totalHX: re.data.data
+              })
+            }
+          })
+          // 获取今日核销数量
+          httputil.request('api/store/code/used/day-count?storeId=' + storeId, {
+            success(re) {
+              me.setData({
+                todayHX: re.data.data
+              })
+            }
+          })
+        }
       }
+      
     },
     moved: function () { },
     detached: function () { },
@@ -100,34 +93,6 @@ Component({
             }
           })
         }
-      })
-    },
-    /**
-     * 打开核销统计页面
-     */
-    openStatistc: function (e) {
-      let shopId = undefined
-      if (this.data.storeInfo) {
-        shopId = this.data.storeInfo.storeId
-      }
-      let url = '/pages/statistic/statistic?shopId=' + shopId
-      if (e.currentTarget.id == 'today') {
-        url += '&istoday=' + 1
-      }
-      wx.navigateTo({
-        url: url
-      })
-    },
-    /**
-     * 打开会员列表
-     */
-    memberList: function () {
-      let shopId = undefined
-      if (this.data.storeInfo) {
-        shopId = this.data.storeInfo.storeId
-      }
-      wx.navigateTo({
-        url: '/pages/hisMember/hisMember?shopId=' + shopId
       })
     }
   }

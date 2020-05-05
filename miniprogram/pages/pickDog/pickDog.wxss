@@ -1,8 +1,0 @@
-/* miniprogram/pages/pickDog/pickDog.wxss */
-@import "../memInfo/memInfo.wxss";
-.codeBtn{
-  margin: 5px 20px;
-  color: #fff;
-  background-color: #1abd35;
-  height: 30px;
-}

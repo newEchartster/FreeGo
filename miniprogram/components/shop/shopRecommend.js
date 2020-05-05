@@ -92,7 +92,7 @@ Component({
       this.loadData(pageNo)
     },
     /**
-     * 加载权益数据
+     * 加载商店数据
      * @param pageNum 页数
      */
     loadData: function (pageNum) {
@@ -100,45 +100,47 @@ Component({
       me.setData({
         searchLoading: true
       })
-      let typeId = me.data.category[me.data.currentTab].id
-      // 请求地址
-      let url = 'admin/store/page/' + typeId + '?pageNo=' + pageNum + '&pageSize=' + me.data.pageSize
+      if (me.data.category && me.data.category.length > 0) {
+        let typeId = me.data.category[me.data.currentTab].id
+        // 请求地址
+        let url = 'admin/store/page/' + typeId + '?pageNo=' + pageNum + '&pageSize=' + me.data.pageSize
 
-      wx.showLoading({
-        title: '正在加载...',
-      })
-      // 获取分类门店
-      httputil.request(url, {
-        success(re) {
-          setTimeout(function () {
-            wx.hideLoading()
-          }, 500)
-          let resData = re.data.data.data == undefined ? [] : re.data.data.data
-          resData.forEach(function (e) {
-            if (e.distance) {
-              e.distance = util.getDistance(e.distance)
-            }
-          })
-          let datas = me.data.allShop.concat(resData)
-          if (resData.length == 0) {
-            me.setData({
-              loadingCompleted: true
-            })
+        wx.showLoading({
+          title: '正在加载...',
+        })
+        // 获取分类门店
+        httputil.request(url, {
+          success(re) {
             setTimeout(function () {
-              wx.showToast({
-                title: '已全部加载',
-                icon: 'success',
-                duration: 1000
+              wx.hideLoading()
+            }, 500)
+            let resData = re.data.data.data == undefined ? [] : re.data.data.data
+            resData.forEach(function (e) {
+              if (e.distance) {
+                e.distance = util.getDistance(e.distance)
+              }
+            })
+            let datas = me.data.allShop.concat(resData)
+            if (resData.length == 0) {
+              me.setData({
+                loadingCompleted: true
               })
-            }, 1000)
+              setTimeout(function () {
+                wx.showToast({
+                  title: '已全部加载',
+                  icon: 'success',
+                  duration: 1000
+                })
+              }, 1000)
+            }
+            me.setData({
+              allShop: datas,
+              searchLoading: false,
+              pageNo: pageNum
+            })
           }
-          me.setData({
-            allShop: datas,
-            searchLoading: false,
-            pageNo: pageNum
-          })
-        }
-      })
+        })
+      }
     },
     swichNav: function (e) {
       var me = this;

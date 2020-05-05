@@ -1,26 +1,5 @@
 <!--components/welfare/welfare.wxml-->
 <view class="container">
-  <!-- 福瑞狗卡片 -->
-  <block wx:if="{{isMember}}">
-    <image class="index-card" mode="aspectFill" src="../../images/index_card.jpg"></image>
-    <!-- <view class="card-no">No.{{userInfo.dog.no}}</view> -->
-    <view class="card-date">领养剩余：{{remainsDays}}天</view>
-  </block>
-  <!-- 权益汇总 -->
-  <view class="flex-header">
-    <view class="header-item">
-      <view class="header-item-view">可用权益</view>
-      <text class="header-item-text">{{canUseCount}}次</text>
-    </view>
-    <view class="header-item">
-      <view class="header-item-view">权益价值</view>
-      <text class="header-item-text">{{totalValue}}元</text>
-    </view>
-    <view class="header-item">
-      <view class="header-item-view">已省费用</view>
-      <text class="header-item-text">{{saveValue}}元</text>
-    </view>
-  </view>
   <!-- 快速搜索 -->
   <view class="search-view">
     <mp-searchbar placeholder="输入门店名称即可查找权益" ext-class="search-class" search="{{search}}" bindblur="onBlur" bindclear="clearSearch"></mp-searchbar>
@@ -50,10 +29,6 @@
         </block>
       </view>
     </view>
-    <!-- <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>  
-    <view class="loading complete" hidden="{{loadingCompleted}}">已加载全部</view> -->
   </scroll-view>
 
 </view>
-<!-- <web-view src="https://mp.weixin.qq.com/s/HLNr0XM0I0vQtdAEN2UPWg">
-</web-view> -->

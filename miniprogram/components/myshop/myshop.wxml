@@ -11,15 +11,11 @@
   <view class="flex-header">
     <view class="header-item">
       <view class="header-item-view">今日核销</view>
-      <text class="header-item-text" id="today" bindtap="openStatistc">{{todayHX}}</text>
+      <text class="header-item-text" id="today">{{todayHX}}</text>
     </view>
     <view class="header-item">
       <view class="header-item-view">累计核销</view>
-      <text class="header-item-text" bindtap="openStatistc">{{totalHX}}</text>
-    </view>
-    <view class="header-item" bindtap="memberList">
-      <view class="header-item-view">会员数量</view>
-      <text class="header-item-text">{{memberList}}</text>
+      <text class="header-item-text">{{totalHX}}</text>
     </view>
   </view>
   <!-- 功能菜单 -->
@@ -27,11 +23,6 @@
     <view bindtap="scan4UseWelfare" class="navi-text">
       <text>扫描核销</text>
     </view>
-  </view>
-  <view class="navi">
-    <navigator url="../pickDog/pickDog" open-type="navigate" class="navi-text">
-      <text>新客领狗</text>
-    </navigator>
   </view>
   <view hidden="{{isEmp}}" class="navi">
     <navigator url="../manageMem/manageMem" open-type="navigate" class="navi-text">

@@ -37,13 +37,6 @@ Component({
           })
         }
       })
-      if (app.globalData.userInfo) {
-        let haveDog = util.isMember()
-        me.setData({
-          userInfo: app.globalData.userInfo,
-          haveDog: haveDog
-        })
-      }
     },
     moved: function () { },
     detached: function () { },

@@ -28,7 +28,7 @@ Page({
       httputil.login(undefined, function(r) {
         // 登录成功跳转到首页
         util.info('已获取到用户信息，跳转到首页')
-        if (r.type == 'DZ' || r.type == 'DY') {
+        if (r.type !== null && (r.type == 'DZ' || r.type == 'DY')) {
           wx.redirectTo({
             url: '../index/index'
           })
@@ -41,7 +41,7 @@ Page({
       })
     }else {
       let userInfo = app.globalData.userInfo
-      if (userInfo.type == 'DZ' || userInfo.type == 'DY') {
+      if (userInfo.type !== null && (userInfo.type == 'DZ' || userInfo.type == 'DY')) {
         wx.redirectTo({
           url: '../index/index'
         })

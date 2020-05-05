@@ -8,14 +8,14 @@ function request(path, obj, access_token) {
   const app = getApp()
   if (access_token) {
     app.globalData.access_token = access_token
-  }else {
+  } else {
     access_token = app.globalData.access_token
   }
-  if(obj.header) {
+  if (obj.header) {
     obj.header.authorization = 'Bearer ' + access_token
-  }else {
+  } else {
     obj.header = {
-      authorization:'Bearer ' + access_token
+      authorization: 'Bearer ' + access_token
     }
   }
 
@@ -23,7 +23,7 @@ function request(path, obj, access_token) {
   let url = domain + path
   obj.url = url
   if (!obj.fail) {
-    obj.fail = function (r) {
+    obj.fail = function(r) {
       util.error('服务器请求失败：[' + r.data.code + ']:' + r.data.message)
       util.info('请求url：[' + url + ']')
       util.info('请求参数：[' + obj.data + ']')
@@ -53,7 +53,7 @@ function getOpenid(appid, appsecret, fn) {
   // 非云开发
   wx.login({
     //获取code
-    success: function (res) {
+    success: function(res) {
       const code = res.code //返回code
       wx.request({
         url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appid + '&secret=' + appsecret + '&js_code=' + code + '&grant_type=authorization_code',
@@ -61,7 +61,7 @@ function getOpenid(appid, appsecret, fn) {
         header: {
           'content-type': 'application/json'
         },
-        success: function (res) {
+        success: function(res) {
           me.globalData.openid = res.data.openid //返回openid
           if (typeof fn === 'function') {
             fn(me.globalData.openid)
@@ -87,7 +87,7 @@ function login(nickname, fn) {
   util.info('开始登录...')
   wx.login({
     //获取code
-    success: function (res) {
+    success: function(res) {
       util.info('微信登录成功...')
       const code = res.code //返回code
       const app = getApp()
@@ -105,16 +105,11 @@ function login(nickname, fn) {
           app.globalData.access_token = res3.data.data.access_token
           app.globalData.logged = true
           // 获取个人资料
+
           request('api/user/info', {
             success(re) {
               util.info('获取用户信息成功...')
               let data = re.data.data
-              if (!data.birthday) {
-                data.birthday = '请选择'
-              }
-              if (!data.address) {
-                data.address = '请选择'
-              }
               app.globalData.userInfo = data
               if (typeof fn === 'function') {
                 fn(data)
@@ -122,6 +117,7 @@ function login(nickname, fn) {
               util.info('已获取到用户信息，app.globalData.userInfo')
             }
           })
+
         },
         fail(r) {
           console.error('[' + r.data.code + ']:' + r.data.message)
