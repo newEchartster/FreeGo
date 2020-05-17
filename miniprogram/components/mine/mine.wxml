@@ -11,6 +11,18 @@
   </view>
   <view class="flex-row" style="width:100%">
     <view class="navi">
+      <navigator url="../coupon/myCoupon" open-type="navigate" class="flex-column">
+        <image src="{{docImg}}" mode="scaleToFill" />
+        <text class="navi-text">我的券</text>
+      </navigator>
+    </view>
+    <!-- <view class="navi">
+      <navigator url="../coupon/myOrder" open-type="navigate" class="flex-column">
+        <image src="{{docImg}}" mode="scaleToFill" />
+        <text class="navi-text">我的券</text>
+      </navigator>
+    </view> -->
+    <view class="navi">
       <navigator url="" open-type="navigate" class="flex-column">
         <image src="{{docImg}}" mode="scaleToFill" />
         <text class="navi-text">话费95折</text>
@@ -28,6 +40,14 @@
         <text class="navi-text">联系我们</text>
       </navigator>
     </view>
-  
   </view>
+  <!-- <view class="flex-row" style="width:100%">
+    <view class="navi">
+      <navigator url="../contactUs/contactUs" open-type="navigate" class="flex-column">
+        <image src="{{contactImg}}" mode="scaleToFill" />
+        <text class="navi-text">联系我们</text>
+      </navigator>
+    </view>
+  
+  </view> -->
 </view>

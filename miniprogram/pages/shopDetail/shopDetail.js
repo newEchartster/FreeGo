@@ -1,3 +1,4 @@
+const app = getApp()
 const util = require('../../utils/util.js')
 const httputil = require('../../utils/httputil.js')
 
@@ -35,34 +36,76 @@ Page({
         })
       }
     })
-    let storeDetail = JSON.parse(options.storeDetail)
-    me.setData(storeDetail)
+    me.setData({
+      storeId: shopId
+    })
+    // 获取店铺权益数据
+    httputil.request('api/store/get/' + shopId , {
+      success(re) {
+        let storeDetail = re.data.data
+        me.setData(storeDetail)
+      }
+    })
     // 加载权益列表
     me.loadData(1)
   },
   /**
-     * 打开权益详细
+     * 购买下单
      */
-  openDetail: function (e) {
-    // 是否已领取
-    if (util.isMember()) {
-      let commodityId = e.target.id
-      wx.navigateTo({
-        url: '../welfareDetail/welfareDetail?commodityId=' + commodityId
-      })
-    } else {
-      wx.showModal({
-        title: '福瑞狗提示',
-        content: '您还未领取狗狗哦！领取后可享受权益.点击【确定】查看如何领取',
-        success(res) {
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../dog/noDog'
-            })
-          }
+  createOrder: function (e) {
+    let commodityId = e.target.id
+    wx.showModal({
+      title: '福瑞狗提示',
+      content: '您确认需要购买该优惠吗？',
+      success(res) {
+        if (res.confirm){
+          // 获取店铺权益数据
+          httputil.request('api/pay/create-dorder?commodityId=' + commodityId, {
+            method: 'post',
+            success(re) {
+              let orderId = re.data.data.id
+              let url = 'api/pay/unifiedorder?openId=' + app.globalData.openid + '&orderId=' + orderId
+              httputil.request(url, {
+                method: 'post',
+                success(re) {
+                  wx.requestPayment({
+                    timeStamp: re.data.data.timeStamp,
+                    nonceStr: re.data.data.nonceStr,
+                    package: re.data.data.package,
+                    signType: 'MD5',
+                    paySign: re.data.data.paySign,
+                    success(res) {
+                      // 查询是否成功
+                      httputil.request('api/pay/info/' + orderId, {
+                        method: 'get',
+                        success(re) {
+                          if (re.data.data.status == 'suc') {
+                            wx.showToast({
+                              title: '支付成功！',
+                              icon: 'success',
+                              duration: 500
+                            })
+                          }else {
+                            wx.showToast({
+                              title: '支付失败！',
+                              icon: 'fail',
+                              duration: 500
+                            })
+                          }
+                        }
+                      })
+                    },
+                    fail(res) { 
+
+                    }
+                  })
+                }
+              })
+            }
+          })
         }
-      })
-    }
+      }
+    })
   },
   //预览图片
   previewImg: function (e) {
@@ -102,7 +145,7 @@ Page({
       title: '正在加载...',
     })
     // 获取店铺权益数据
-    httputil.request('admin/commodity/page', {
+    httputil.request('api/commodity/page', {
       data: {
         pageNo: pageNum,
         pageSize: me.data.pageSize,

@@ -1,0 +1,43 @@
+/* miniprogram/pages/coupon/myCoupon.wxss */
+.welfare-item-used {
+  margin: 20rpx;
+  background-color: #DCDCDC;
+  display:flex;
+  flex-direction:row;
+  height: 200rpx;
+  border: 1px solid #e9e9e9;
+  border-radius: 10px;
+}
+.welfare-item-unuse {
+  margin: 20rpx;
+  background-color: #F5F5DC;
+  display:flex;
+  flex-direction:row;
+  height: 200rpx;
+  border: 1px solid #e9e9e9;
+  border-radius: 10px;
+}
+.welfare-item-title {
+  font-weight: bold;
+  font-size: 12pt;
+  margin: 20rpx 0 20rpx 20rpx;
+  color: #353535
+}
+.welfare-item-2 {
+  font-size: 10pt;
+  margin-left: 20rpx;
+  color: #888888
+}
+.btn-use {
+  background-color: #09bb07;
+  border-radius: 5px;
+  width: 40px;
+  height: 30px;
+  font-size: 10pt;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+}
+.btn-area {
+  padding: 0 10rpx;
+}

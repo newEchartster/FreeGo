@@ -78,18 +78,23 @@ Component({
   methods: {
     // 扫码核销权益
     scan4UseWelfare: function () {
+      let me = this
       wx.scanCode({
         onlyFromCamera: true,
         success(res) {
           let code = res.result
           // 扫码核销权益
-          httputil.request('api/store/useCode', {
+          let url = 'api/verification/use?storeId=' + me.data.storeInfo.store + '&verificationCode=' + code
+          httputil.request(url, {
             method: 'post',
-            data: {
-              code: code
-            },
             success(re) {
-              console.log('扫码核销成功')
+              if (re.data.data.status == 'used') {
+                wx.showToast({
+                  title: '已核销',
+                  icon: 'success',
+                  duration: 1000
+                })
+              }
             }
           })
         }

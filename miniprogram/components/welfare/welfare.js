@@ -23,6 +23,10 @@ Component({
     loadingCompleted: false, // 已加载完数据
     precision: [
       {
+        value: 0,
+        text: '全部'
+      },
+      {
         value: 1,
         text: '1千米内'
       },
@@ -33,10 +37,6 @@ Component({
       {
         value: 20,
         text: '20千米内'
-      },
-      {
-        value: 0,
-        text: '全部'
       }
     ]
   },
@@ -137,29 +137,15 @@ Component({
       this.loadData(1, false)
     },
     /**
-     * 打开权益详细
+     * 进入店铺
      */
-    openDetail: function (e) {
+    goToShop: function (options) {
       let me = this
-      // 是否已领取
-      if (me.data.isMember) {
-        let commodityId = e.target.id
-        wx.navigateTo({
-          url: '../welfareDetail/welfareDetail?commodityId=' + commodityId
-        })
-      }else {
-        wx.showModal({
-          title: '福瑞狗提示',
-          content: '您还未领取狗狗哦！领取后可享受权益.点击【确定】查看如何领取',
-          success(res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '../dog/noDog'
-              })
-            }
-          }
-        })
-      }
+      let shopId = options.target.id
+      // let detail = me.getStoreDetail(shopId)
+      wx.navigateTo({
+        url: '../shopDetail/shopDetail?shopId=' + shopId
+      })
     },
     /**
      * 加载更多
@@ -179,7 +165,7 @@ Component({
         searchLoading: true
       })
       // 请求地址
-      let url = 'api/store/commodity-page?lat=' + me.data.latitude 
+      let url = 'api/store/page?lat=' + me.data.latitude 
         + '&lon=' + me.data.longitude
         + '&precision=' + me.data.precision[me.data.curPrecision].value
         + '&pageNo=' + pageNum
@@ -200,8 +186,8 @@ Component({
           let datas
           let resData = re.data.data.data == undefined ? [] : re.data.data.data
           resData.forEach(function (e) {
-            if (e.storeInfo.distance) {
-              e.distance = util.getDistance(e.storeInfo.distance)
+            if (e.distance) {
+              e.distance = util.getDistance(e.distance)
             }
           })
           if (isAppend) {
@@ -260,7 +246,7 @@ Component({
         wx.getSystemInfo({
           success: res => {
             app.globalData.systemInfo = res
-            let listHeight = (me.data.isMember ? res.windowHeight - 324 : res.windowHeight - 184)
+            let listHeight = res.windowHeight - 135
             me.setData({
               listHeight: listHeight,
               detailWidth: res.windowWidth - 125

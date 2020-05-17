@@ -74,9 +74,8 @@ Component({
     goToShop: function (options) {
       let me = this
       let shopId = options.target.id
-      let detail = me.getStoreDetail(shopId)
       wx.navigateTo({
-        url: '../shopDetail/shopDetail?shopId=' + shopId + '&storeDetail=' + JSON.stringify(detail)
+        url: '../shopDetail/shopDetail?shopId=' + shopId
       })
     },
     //事件处理函数
@@ -103,7 +102,7 @@ Component({
       if (me.data.category && me.data.category.length > 0) {
         let typeId = me.data.category[me.data.currentTab].id
         // 请求地址
-        let url = 'admin/store/page/' + typeId + '?pageNo=' + pageNum + '&pageSize=' + me.data.pageSize
+        let url = 'api/store/page/' + typeId + '?pageNo=' + pageNum + '&pageSize=' + me.data.pageSize
 
         wx.showLoading({
           title: '正在加载...',
@@ -167,7 +166,7 @@ Component({
       })
    
       // 获取门店分类
-      httputil.request('admin/store/types', {
+      httputil.request('api/store/types', {
         success(re) {
           me.setData({
             category: re.data.data == undefined ? [] : re.data.data
@@ -176,25 +175,6 @@ Component({
           me.loadData(1)
         }
       })
-    },
-    getStoreDetail: function(storeId) {
-      if (storeId) {
-        let me = this
-        // 今日推荐的商铺
-        let store = me.data.jrtj
-        for(let i=0;i<store.length;i++) {
-          if (storeId == store[i].storeId) {
-            return store[i]
-          }
-        }
-        // 所有店铺
-        let store2 = me.data.allShop
-        for (let i = 0; i < store2.length; i++) {
-          if (storeId == store2[i].storeId) {
-            return store2[i]
-          }
-        }
-      }
     }
   }
 })

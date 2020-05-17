@@ -2,7 +2,7 @@
 <view class="container">
   <!-- 快速搜索 -->
   <view class="search-view">
-    <mp-searchbar placeholder="输入门店名称即可查找权益" ext-class="search-class" search="{{search}}" bindblur="onBlur" bindclear="clearSearch"></mp-searchbar>
+    <mp-searchbar placeholder="输入门店名称即可查找" ext-class="search-class" search="{{search}}" bindblur="onBlur" bindclear="clearSearch"></mp-searchbar>
   </view>
   <!-- 距离精度 -->
   <view class="nav-tabs">
@@ -13,18 +13,18 @@
     <view wx:for="{{datas}}" wx:key="key" class="welfare-item">
       <!-- logo -->
       <view class="shop-logo">
-        <image mode="scaleToFill" class="shop-logo-image" src="{{item.storeInfo.imgUrl}}"></image>
+        <image mode="scaleToFill" class="shop-logo-image" src="{{item.imgUrl}}"></image>
       </view>
       <!-- 详细 -->
       <view style="width:{{detailWidth}}px;flex:1;" >
-        <view class="welfare-item-title">【{{item.storeInfo.name}}】{{item.title}}</view>
-        <view class="welfare-item-date">剩余有效期：{{filter.getLeftDays(now, item.endTime)}}天</view>
-        <view class="welfare-item-value">数量：{{item.num}}<text style="margin-left:20px;">价值：{{item.price}}元</text></view>
+        <view class="welfare-item-title">{{item.name}}</view>
+        <view class="welfare-item-2">地址：{{item.address}}</view>
+        <view class="welfare-item-2">电话：{{item.phone}}</view>
       </view>
       <!-- 位置和使用 -->
       <view class="shop-position">
-        <!-- <view>{{item.distance}}</view> -->
-        <view bindtap="openDetail" id="{{item.commodityId}}" style="width:50px;min-height:25px;margin-right: 10px;" class="btn-use">使用</view>
+        <view>{{item.distance}}</view>
+        <view bindtap="goToShop" id="{{item.storeId}}" style="width:50px;min-height:25px;margin-right: 10px;" class="btn-use">进店</view>
         <block wx:if="{{isMember}}">
         </block>
       </view>

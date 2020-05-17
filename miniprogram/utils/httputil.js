@@ -103,6 +103,7 @@ function login(nickname, fn) {
         success(res3) {
           util.info('服务器登录成功...')
           app.globalData.access_token = res3.data.data.access_token
+          app.globalData.openid = res3.data.data.openId
           app.globalData.logged = true
           // 获取个人资料
 
@@ -110,6 +111,10 @@ function login(nickname, fn) {
             success(re) {
               util.info('获取用户信息成功...')
               let data = re.data.data
+              if (data.userStoreRoleList) {
+                data.storeInfo = data.userStoreRoleList[0]
+                data.type = 'DY'
+              }
               app.globalData.userInfo = data
               if (typeof fn === 'function') {
                 fn(data)

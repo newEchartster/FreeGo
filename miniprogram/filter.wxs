@@ -29,8 +29,13 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function formatMonney(n) {
+  return (n/100).toString()
+}
+
 module.exports = {
   formatDate: formatDate,
-  formatDate: formatDate,
-  getLeftDays: getLeftDays
+  formatTime: formatTime,
+  getLeftDays: getLeftDays,
+  formatMonney: formatMonney
 }

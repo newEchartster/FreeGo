@@ -34,16 +34,20 @@ function previewImg(e) {
 }
 
 function getDistance(dis) {
-  if (dis <= 100) {
-    return '<100m'
+  if (typeof (dis) === 'number') {
+    dis = dis.toFixed(2)
+    if (dis <= 0.1) {
+      return '<100m'
+    }
+    if (dis <= 1) {
+      return Math.round(dis) + 'm'
+    }
+    if (dis > 20) {
+      return '>20km'
+    }
+    return dis + 'km'
   }
-  if (dis <= 1000) {
-    return Math.round(dis) + 'm'
-  }
-  if (dis > 20000) {
-    return '>20km'
-  }
-  return Math.round(dis / 1000) + 'km'
+  return ''
 }
 /**
  * 是否是已领取福瑞狗的会员，且在有效期内

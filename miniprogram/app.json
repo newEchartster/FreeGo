@@ -10,7 +10,9 @@
     "pages/welfareDetail/welfareDetail",
     "pages/manageMem/addEmp/addEmp",
     "pages/hisMember/hisMember",
-    "pages/introduction/introduction"
+    "pages/introduction/introduction",
+    "pages/coupon/myCoupon",
+    "pages/coupon/myOrder"
   ],
   "window": {
     "backgroundColor": "#ffffff",

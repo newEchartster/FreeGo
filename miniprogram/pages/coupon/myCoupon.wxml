@@ -1,0 +1,24 @@
+<!--miniprogram/pages/coupon/myCoupon.wxml-->
+<wxs src="../../filter.wxs" module="filter" />
+<!-- 我的优惠券 -->
+<view class="container">
+  <!-- 列表 -->
+  <scroll-view scroll-y="true" bindscrolltolower="addMore">
+    <view wx:for="{{datas}}" wx:key="key" class="{{item.status == 'used'?'welfare-item-used':'welfare-item-unuse'}}">
+      <!-- 详细 -->
+      <view style="flex:1;" >
+        <view class="welfare-item-title">{{item.commodityId}}</view>
+        <view class="welfare-item-2">券码：{{item.verificationCode}}</view>
+        <view hidden="{{item.status != 'used'}}" class="welfare-item-2">使用时间：{{filter.formatTime(item.useTime)}}</view>
+      </view>
+      <!-- 位置和使用 -->
+      <view class="btn-area">
+        <view bindtap="useCoupon" hidden="{{item.status == 'used'}}" style="margin-top:{{item.status == 'used'?70:24}}rpx" id="{{item.verificationCode}}" class="btn-use">使用</view>
+        <view bindtap="goToShop" id="{{item.storeId}}" style="margin-top:{{item.status == 'used'?70:24}}rpx" class="btn-use">进店</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view>
+    <canvas style="height:300px;width:300px;" canvas-id="barcode" />
+  </view>
+</view>
