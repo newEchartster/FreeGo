@@ -13,7 +13,23 @@ Page({
     pageSize: 20,
     datas: [],
     searchLoading: false, // 正在加载
-    loadingCompleted: false, // 已加载完数据
+    loadingCompleted: false, // 已加载完数据,
+    showCode: false, // 显示二维码
+    curNavi: 0,
+    status: [
+      {
+        value: 'created',
+        text: '未使用'
+      },
+      {
+        value: 'used',
+        text: '已使用'
+      },
+      {
+        value: 'overtime',
+        text: '已过期'
+      }
+    ]
   },
 
   /**
@@ -21,6 +37,14 @@ Page({
    */
   onLoad: function (options) {
     let me = this
+    wx.getSystemInfo({
+      success: res => {
+        me.setData({
+          winHeight: res.windowHeight,
+          winWidth: res.windowWidth
+        })
+      }
+    })
     // 获取数据
     me.loadData(1)
   },
@@ -41,8 +65,7 @@ Page({
     httputil.request('api/verification/page', {
       data: {
         pageNo: pageNum,
-        pageSize: me.data.pageSize,
-        storeId: me.data.storeId
+        pageSize: me.data.pageSize
       },
       success(re) {
         setTimeout(function () {
@@ -84,10 +107,38 @@ Page({
   useCoupon: function(e) {
     let me = this
     let verificationCode = e.target.id
-    util.qrcode("barcode", verificationCode, 400, 400)
+    util.qrcode("barcode", verificationCode, 750, 750)
     me.setData({
+      showCode: true,
       codeStr: verificationCode
     })
+  },
+  /**
+   * 点击二维码隐藏
+   */
+  tapCode: function() {
+    let me = this
+    me.setData({
+      datas: [],
+      showCode: false
+    })
+    // 刷新
+    me.loadData(1)
+  },
+  /**
+   * 切换菜单
+   */
+  swichNav: function (e) {
+    var me = this
+    if (me.data.curNavi === e.target.dataset.current) {
+      return false
+    } else {
+      me.setData({
+        curNavi: e.target.dataset.current,
+        datas: [],
+      })
+      me.loadData(1, false)
+    }
   },
   /**
    * 进去商店
@@ -99,4 +150,12 @@ Page({
       url: '../shopDetail/shopDetail?shopId=' + shopId
     })
   },
+  /**
+   * 使用须知
+   */
+  notice: function() {
+    wx.navigateTo({
+      url: '../usageNotice/usageNotice'
+    })
+  }
 })

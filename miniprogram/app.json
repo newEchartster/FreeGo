@@ -9,10 +9,10 @@
     "pages/shopDetail/shopDetail",
     "pages/welfareDetail/welfareDetail",
     "pages/manageMem/addEmp/addEmp",
-    "pages/hisMember/hisMember",
     "pages/introduction/introduction",
     "pages/coupon/myCoupon",
-    "pages/coupon/myOrder"
+    "pages/coupon/myOrder",
+    "pages/usageNotice/usageNotice"
   ],
   "window": {
     "backgroundColor": "#ffffff",

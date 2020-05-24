@@ -1,7 +1,10 @@
 <!--components/shop/shopRecommend.wxml-->
 <view class="container">
   <!-- 今日推荐 -->
-  <view style="text-align:center;width:100%;margin-bottom:6px;border-bottom:1px solid #e6e6e6;">
+  <view style="width: 100%;" >
+    <view class="header-title">必逛好店</view>
+  </view>
+  <view style="width:100%;margin-bottom:6px;border-bottom:1px solid #e6e6e6;">
     <!-- <view style="background-color:#fff;width:100%;">今日推荐</view> -->
     <!-- 推荐列表 -->
     <scroll-view scroll-x="true" class="flex-shop-header">
@@ -22,20 +25,20 @@
   <scroll-view scroll-y="true" class="{{currentTab == idx?'show':'hidden'}} tab-content" bindscrolltolower="addMore" style="height:{{winHeight}}px;background-color:#fff;width:100%;" wx:for="{{allShop}}" wx:for-index="idx"  wx:key="key">
     <!-- logo -->
     <view class="shop-detail">
-      <view class="shop-logo">
-        <image id="{{item.storeId}}" class="shop-logo-two-image" mode="scaleToFill" bindtap="goToShop" src="{{item.imgUrl}}"></image>
-      </view>
       <!-- 详细 -->
-      <view style="flex:1;padding: 5px;" >
+      <view class="shop-detail-msg">
         <view class="shop-detail-title">{{item.name}}</view>
         <view class="shop-detail-text">{{item.title}}</view>
         <view class="shop-detail-text">{{item.phone}}</view>
         <view class="shop-detail-text">{{item.address}}</view>
       </view>
-      <!-- 距离 -->
-      <view class="detail-entrance">
-        <button bindtap="goToShop" id="{{item.storeId}}" style="width:50px;" class="btn-use">进入\n门店</button>
+      <view class="shop-logo">
+        <image id="{{item.storeId}}" class="shop-logo-two-image" mode="scaleToFill" bindtap="goToShop" src="{{item.imgUrl}}"></image>
       </view>
+      <!-- 距离 -->
+      <!-- <view class="detail-entrance">
+        <button bindtap="goToShop" id="{{item.storeId}}" style="width:50px;" class="btn-use">进入\n门店</button>
+      </view> -->
     </view>
   </scroll-view>
 </view>

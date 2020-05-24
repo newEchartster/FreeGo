@@ -13,15 +13,9 @@
     <view class="navi">
       <navigator url="../coupon/myCoupon" open-type="navigate" class="flex-column">
         <image src="{{docImg}}" mode="scaleToFill" />
-        <text class="navi-text">我的券</text>
+        <text class="navi-text">我的卡包</text>
       </navigator>
     </view>
-    <!-- <view class="navi">
-      <navigator url="../coupon/myOrder" open-type="navigate" class="flex-column">
-        <image src="{{docImg}}" mode="scaleToFill" />
-        <text class="navi-text">我的券</text>
-      </navigator>
-    </view> -->
     <view class="navi">
       <navigator url="" open-type="navigate" class="flex-column">
         <image src="{{docImg}}" mode="scaleToFill" />

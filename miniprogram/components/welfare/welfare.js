@@ -24,7 +24,7 @@ Component({
     precision: [
       {
         value: 0,
-        text: '全部'
+        text: '推荐'
       },
       {
         value: 1,

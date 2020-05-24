@@ -124,3 +124,10 @@ page {
   padding-left: 20px;
   width: 100%;
 }
+.right-arrow {
+  display :flex;
+  position: static;
+  width: 40rpx;
+  height: 30rpx;
+  right: 20rpx;
+}

@@ -16,14 +16,15 @@
         <image mode="scaleToFill" class="shop-logo-image" src="{{item.imgUrl}}"></image>
       </view>
       <!-- 详细 -->
-      <view style="width:{{detailWidth}}px;flex:1;" >
+      <view style="border-right: 1px dashed #BBBBBB;flex:1;" >
         <view class="welfare-item-title">{{item.name}}</view>
-        <view class="welfare-item-2">地址：{{item.address}}</view>
-        <view class="welfare-item-2">电话：{{item.phone}}</view>
+        <view class="welfare-item-2">{{item.address}}</view>
+        <view class="welfare-item-2">{{item.phone}}</view>
+        <view class="btn-1">安心商家</view>
       </view>
       <!-- 位置和使用 -->
       <view class="shop-position">
-        <view>{{item.distance}}</view>
+        <view class="shop-distance">{{item.distance}}</view>
         <view bindtap="goToShop" id="{{item.storeId}}" style="width:50px;min-height:25px;margin-right: 10px;" class="btn-use">进店</view>
         <block wx:if="{{isMember}}">
         </block>

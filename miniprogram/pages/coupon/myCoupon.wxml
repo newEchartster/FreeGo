@@ -2,23 +2,47 @@
 <wxs src="../../filter.wxs" module="filter" />
 <!-- 我的优惠券 -->
 <view class="container">
+  <!-- 使用须知 -->
+  <!-- <view  hidden="{{showCode}}" class="navi">
+    <navigator url="../usageNotice/usageNotice" open-type="navigate" class="navi-text">
+      <text>使用须知</text>
+      <image class="right-arrow" src="/images/icon/arrow.jpg"></image>
+    </navigator>
+  </view> -->
+  <view class="nav-tabs">
+    <view class="tab-list  {{curNavi == idx?'active':'default'}}" wx:for="{{status}}" wx:for-index="idx" wx:for-item="itemName" data-current="{{idx}}" wx:key="key" bindtap="swichNav">{{itemName.text}}</view>
+  </view>
   <!-- 列表 -->
-  <scroll-view scroll-y="true" bindscrolltolower="addMore">
-    <view wx:for="{{datas}}" wx:key="key" class="{{item.status == 'used'?'welfare-item-used':'welfare-item-unuse'}}">
-      <!-- 详细 -->
-      <view style="flex:1;" >
-        <view class="welfare-item-title">{{item.commodityId}}</view>
-        <view class="welfare-item-2">券码：{{item.verificationCode}}</view>
-        <view hidden="{{item.status != 'used'}}" class="welfare-item-2">使用时间：{{filter.formatTime(item.useTime)}}</view>
+  <scroll-view scroll-y="true" hidden="{{showCode}}" bindscrolltolower="addMore">
+    <view wx:for="{{datas}}" wx:key="key" class="{{item.status == 'used'?'item-used':'item-unuse'}}">
+      <view class="flex-normal" style="border-bottom: 1px dashed #EDC091;" >
+        <!-- 详细 -->
+        <view style="flex:1;height:100px;">
+          <view class="item-title">{{item.commodityId}}</view>
+          <view class="item-2">券码：{{item.verificationCode}}</view>
+          <view hidden="{{item.status != 'used'}}" class="item-2">使用时间：{{filter.formatTime(item.useTime)}}</view>
+        </view>
+        <!-- 操作 -->
+        <view class="btn-area">
+          <view bindtap="useCoupon" hidden="{{item.status == 'used'}}" style="margin-top:{{item.status == 'used'?70:24}}rpx" id="{{item.verificationCode}}" class="btn-use">立即使用</view>
+          <view bindtap="goToShop" id="{{item.storeId}}" style="margin-top:{{item.status == 'used'?70:24}}rpx" class="btn-use">进店</view>
+        </view>
       </view>
-      <!-- 位置和使用 -->
-      <view class="btn-area">
-        <view bindtap="useCoupon" hidden="{{item.status == 'used'}}" style="margin-top:{{item.status == 'used'?70:24}}rpx" id="{{item.verificationCode}}" class="btn-use">使用</view>
-        <view bindtap="goToShop" id="{{item.storeId}}" style="margin-top:{{item.status == 'used'?70:24}}rpx" class="btn-use">进店</view>
+      <!-- 使用须知 -->
+      <view>
+        仅限{{item.storeId}}使用
+      </view>
+      <!-- 须知详细 -->
+      <view style="width:100%;">
+        <view class="remark-text">1、本权益券不兑换现金，不参与外送服务</view>
+        <view class="remark-text">2、本券不得与其他优惠同时使用</view>
+        <view class="remark-text">3、请在消费前出示使用</view>
+        <view class="remark-text">4、产品和服务请与商家实际提供为准</view>
       </view>
     </view>
   </scroll-view>
-  <view>
-    <canvas style="height:300px;width:300px;" canvas-id="barcode" />
+  
+  <view hidden="{{!showCode}}" style="width:100%;height:{{winHeight}}px;">
+    <canvas style="height:{{winWidth}}px;margin-top: {{-winWidth/2}}px;;" class="canvas-code" bindtap="tapCode" canvas-id="barcode" />
   </view>
 </view>

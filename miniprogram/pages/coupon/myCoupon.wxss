@@ -1,43 +1,89 @@
 /* miniprogram/pages/coupon/myCoupon.wxss */
-.welfare-item-used {
+.item-used {
   margin: 20rpx;
   background-color: #DCDCDC;
   display:flex;
-  flex-direction:row;
-  height: 200rpx;
+  flex-direction:column;
   border: 1px solid #e9e9e9;
-  border-radius: 10px;
+  border-radius: 6px;
 }
-.welfare-item-unuse {
+.item-unuse {
   margin: 20rpx;
-  background-color: #F5F5DC;
+  background-color: #F9D133;
   display:flex;
-  flex-direction:row;
-  height: 200rpx;
-  border: 1px solid #e9e9e9;
-  border-radius: 10px;
+  flex-direction:column;
+  border: 1px solid #E2B86C 100%;
+  border-radius: 6px;
 }
-.welfare-item-title {
+.item-title {
   font-weight: bold;
   font-size: 12pt;
   margin: 20rpx 0 20rpx 20rpx;
   color: #353535
 }
-.welfare-item-2 {
+.item-2 {
   font-size: 10pt;
   margin-left: 20rpx;
   color: #888888
 }
 .btn-use {
-  background-color: #09bb07;
-  border-radius: 5px;
-  width: 40px;
-  height: 30px;
-  font-size: 10pt;
-  color: #fff;
-  line-height: 30px;
+  width: 64px;
+  height: 26px;
+  line-height: 24px;
+  border-radius: 17px;
+  background-color: rgba(232, 32, 80, 1);
   text-align: center;
+  color: #fff;
+  font-size: 9pt;
 }
 .btn-area {
   padding: 0 10rpx;
+}
+.canvas-code {
+  width: 100%;
+  margin: auto;
+  top: 50%;
+}
+.navi {
+  height: 80rpx;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+.nav-tabs{
+  width: 100%;
+  height: 75rpx;
+  display: flex;   
+}
+.default{
+    line-height:75rpx;
+    text-align:center;
+    flex:1;
+    border-bottom:1px solid #e9e9e9;
+    color:#999999;
+    font-weight:bold;
+    font-size:11pt;
+    width: 25%; 
+}
+.active{
+    line-height:75rpx;
+    text-align:center;
+    color:#000000;
+    flex:1;
+    border-bottom:1px solid #000000;
+    font-weight:bold;
+    font-size:13pt;
+    width: 25%; 
+}
+.remark-text {
+  font-size: 10pt;
+  color: #888888;
+  padding: 5px 0px 0px 20px;
+  width:100%;
 }
